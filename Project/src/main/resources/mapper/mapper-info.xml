@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.site.mapper.InfoMapper">
+	
+	<!-- 스튜디오 -->
+	
+	<!-- 전체 리스트 가져오기 -->
+	<select id="selectStudioListAll" resultType="com.site.dto.StudiocompanyInfoDto">
+		<![CDATA[ 
+		  	select * from (select rownum rnum,a.* from 
+		    (select * from StudioCompanyInfo order by infoId asc) a) 
+		    where rnum>=#{startrow} and rnum<=#{endrow}
+	    ]]> 
+	</select>
+	
+	<!-- 검색한 리스트 가져오기 -->
+	<select id="selectStudioListSearch" resultType="com.site.dto.StudiocompanyInfoDto">
+		<![CDATA[ 
+		  	select * from (select rownum rnum,a.* from
+			(select * from StudioCompanyInfo where c_name like '%'||#{search}||'%'
+			order by infoId asc) a)
+		    where rnum>=#{startrow} and rnum<=#{endrow}
+	    ]]>   
+	</select>
+	
+	<!-- 리스트 수 가져오기 -->
+	  <select id="listCount" resultType="int">
+	  	select count(*) from StudioCompanyInfo
+	  </select>
+	  <select id="listCountSearch" resultType="int">
+	  	<![CDATA[
+	  		select count(*) from StudioCompanyInfo where c_name like '%'||#{search}||'%'
+	  	]]> 
+	  </select>
+	  
+	  <!-- content_view -->
+	  <select id="selectStudioDetail_view" resultType="com.site.dto.StudiocompanyInfoDto">
+	  	select * from StudioCompanyInfo where infoId=#{infoId}
+	  </select>
+	
+	
+</mapper>
