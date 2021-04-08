@@ -12,7 +12,7 @@ public class StudiocompanyInfoDto {
 	private String infoId;
 	private String id;
 	private String c_name;
-	private String c_explain;
+	private String content;
 	private String c_productName;
 	private String c_productPrice;
 	private String c_onlineAddress;

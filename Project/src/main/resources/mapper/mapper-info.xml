@@ -10,7 +10,7 @@
 	<select id="selectStudioListAll" resultType="com.site.dto.StudiocompanyInfoDto">
 		<![CDATA[ 
 		  	select * from (select rownum rnum,a.* from 
-		    (select * from StudioCompanyInfo order by infoId asc) a) 
+		    (select * from StudioCompanyInfo order by infoId desc) a) 
 		    where rnum>=#{startrow} and rnum<=#{endrow}
 	    ]]> 
 	</select>
@@ -20,7 +20,7 @@
 		<![CDATA[ 
 		  	select * from (select rownum rnum,a.* from
 			(select * from StudioCompanyInfo where c_name like '%'||#{search}||'%'
-			order by infoId asc) a)
+			order by infoId desc) a)
 		    where rnum>=#{startrow} and rnum<=#{endrow}
 	    ]]>   
 	</select>
@@ -39,6 +39,34 @@
 	  <select id="selectStudioDetail_view" resultType="com.site.dto.StudiocompanyInfoDto">
 	  	select * from StudioCompanyInfo where infoId=#{infoId}
 	  </select>
-	
+	  
+	  <!-- 정보 글 등록 -->
+	  <insert id="insertStudioWrite">
+	  	<![CDATA[ 
+		  	insert into StudioCompanyInfo values(
+			stu_sequence.nextval,'aaa',#{c_name},#{content},#{c_productName},
+			#{c_productPrice},#{c_onlineAddress},#{c_fileName},'5','111-1111',#{c_officeHours},#{c_offDays},'서울특별시 강남구 도산대로66길 43 (청담동) B1F')
+	    ]]>
+	  </insert>
+	  
+	  <!-- 수정하기 위해 데이터 가져오기(modify_view)  -->
+	  <select id="selectStudioModifyView" resultType="com.site.dto.StudiocompanyInfoDto">
+	  	<![CDATA[
+	  		select * from StudioCompanyInfo where infoId=#{infoId}
+	  	]]>
+	  </select>
+	  
+	  <!-- 스튜디오 게시글 수정하기 -->
+	  <update id="updateStudioModify">
+	  	<![CDATA[ 
+		  	update StudioCompanyInfo set content=#{content},c_productName=#{c_productName},c_productPrice=#{c_productPrice},
+		  	c_onlineAddress=#{c_onlineAddress},c_fileName=#{c_fileName},c_officeHours=#{c_officeHours},c_offDays=#{c_offDays}
+			where infoId=#{infoId}
+	    ]]>
+	  </update>
+	  
+	  
+	  
+	  
 	
 </mapper>
