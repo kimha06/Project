@@ -43,9 +43,9 @@
 <script type="text/javascript">
 function InfoModifyCheck() {
 	alert('성공');
-	var form = $('#online_write_box')[0];
+	/* var form = $('#online_modify_box')[0];
 	// FormData 객체 생성
-	var formData = new FormData(form);  //대신 밑에 formData에 넣어줌
+	var formData = new FormData(form);  //대신 밑에 formData에 넣어줌 */
 	
 	if($('#c_productName').val()=="") {
 		alert('상품명을 입력해주세요.');
@@ -90,11 +90,13 @@ function InfoModifyCheck() {
 		return false;
 	}
 	
-	$.ajax({
-		url:"./studio_list",
+	document.online_modify_box.submit();
+	
+	/* $.ajax({
+		url:"./studio_modify",
 		type:"post",
 		enctype:"multipart/form-data",
-		data: new FormData($('#online_write_box')[0]),
+		data: new FormData($('#online_modify_box')[0]),
 			processData: false,
 			contentType: false,
 			cache : false,
@@ -108,7 +110,7 @@ function InfoModifyCheck() {
 		error:function() {
 			alert('에러');
 		}
-	});
+	}); */
 }
 </script>
 
@@ -348,7 +350,7 @@ $(document).ready(function() {
 });
 </script>
 <div id="online_write_wrap">    
-   <form name="online_write_box" id="online_write_box" method="post" action="./after_write" enctype="multipart/form-data">
+   <form name="online_modify_box" id="online_modify_box" method="post" action="./studio_modify?infoId=${map.stuDto.infoId }" enctype="multipart/form-data">
    <input type="hidden" name="userid" id="userid" value="관리자">
    
    <div class="online_Awrite_form">
@@ -362,31 +364,31 @@ $(document).ready(function() {
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체명</span>
                 <div class="value">
-                <input type="input" name="c_name" id="c_name" class="online_write_input02" value="로그인세션에 담긴 업체명" style="padding-left:5px;color:#000000;">
+                <input type="text" name="c_name" id="c_name" class="online_write_input02" value="로그인세션에 담긴 업체명" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;상품가격</span>
                 <div class="value">
-                <input type="input" name="c_productPrice" id="c_productPrice" class="online_write_input02" value="${map.stuDto.c_productPrice }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="text" name="c_productPrice" id="c_productPrice" class="online_write_input02" value="${map.stuDto.c_productPrice }" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;홈페이지 주소</span>
                 <div class="value">
-                <input type="input" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="${map.stuDto.c_onlineAddress }" style="padding-left:5px;color:#000000;">
+                <input type="text" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="${map.stuDto.c_onlineAddress }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;영업시간</span>
                 <div class="value">
-                <input type="input" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="${map.stuDto.c_officeHours }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="text" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="${map.stuDto.c_officeHours }" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;휴무일</span>
                 <div class="value">
-                <input type="input" name="c_offDays" id="c_offDays" class="online_write_input02" value="${map.stuDto.c_offDays }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="text" name="c_offDays" id="c_offDays" class="online_write_input02" value="${map.stuDto.c_offDays }" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li" >

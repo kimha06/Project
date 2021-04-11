@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("br","<br>"); %>
+<% pageContext.setAttribute("cn","\n"); %>
 <html><head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -42,7 +46,7 @@
 <!-- 글쓰기 저장 ajax -->
 <script type="text/javascript">
 	function InfowriteCheck() {
-		alert('성공');
+		
 		var form = $('#online_write_box')[0];
 		// FormData 객체 생성
 		var formData = new FormData(form);  //대신 밑에 formData에 넣어줌
@@ -69,6 +73,10 @@
 			return false;
 		}
 		
+		var str = $('#content').val();
+	      str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+	      $('#content').val(str);
+		
 		$.ajax({
 			url:"./studio_write",
 			type:"post",
@@ -89,6 +97,8 @@
 			}
 		});
 	}
+	    
+	
 </script>
 
 
@@ -228,6 +238,26 @@ function logout()
 	};
 	top.location.replace(href)		
 }
+
+
+var formArray = {};  //파일을 담을 객체 key, value 형태로 파일을 담든다.
+var fileList = new Object();
+
+$('#file').change(function(evt) {
+    fileList = $(this)[0].files;  //파일 대상이 리스트 형태로 넘어온다.
+    for(var i=0;i < fileList.length;i++){
+        var file = fileList[i];
+        const formData = new FormData();
+        formData.append('유니크한아이디', file);  //파일을 더해준다.
+        //만약 여기서 유니크한이이디를 사용하여 테그(노드)를 만든다면
+        //각각 파일에 대해 프로그래싱이 가능하다.
+        $('프로그래스 상태를 나타낼 테그').append('유니크한 아이디를 가진 객체');
+    }
+});
+
+
+
+
 </script>
   
 </head>
@@ -341,7 +371,7 @@ $(document).ready(function() {
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체명</span>
                 <div class="value">
-                <input type="input" name="c_name" id="c_name" class="online_write_input02" value="로그인세션에 담긴 업체명" style="padding-left:5px;color:#000000;">
+                <input type="input" name="c_name" id="c_name" class="online_write_input02" value="${session_name }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
@@ -371,26 +401,34 @@ $(document).ready(function() {
             <li class="box_li" >
             <span class="online_write_title" style="font-size:14px;"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;대표이미지</span>
                 <div class="value"> 
-                <input type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
+                <input multiple="multiple" type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
                </div>
+               
             </li>
              <li class="online_wirte_editor" style="clear:both;">
             <span class="online_write_title02" style="font-size:14px;"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체설명</span>
                 <div class="value">
                 <div><textarea name="content" id="content">● brand's notes
--                
+  -              
+    
 ● 주요 특징
--
+  -
+  
 ● 추천 키워드/추천 포인트
--
+  -
+  
 ● 추가 촬영 비용
--
+  -
+  
 ● 전체 스케줄
--
+  -
+  
 ● 웨딩 촬영 소요시간
-- 
+  - 
+  
 ● 상품 이용 일정 변경 및 취소 시 위약금
-- 
+  - 
+  
                 </textarea></div></div>
             </li>
 

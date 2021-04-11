@@ -15,14 +15,28 @@ public interface InfoMapper {
 	List<StudiocompanyInfoDto> selectStudioListSearch(int startrow, int endrow, String search);
 
 	//스튜디오 리스트 개수 가져오기
-	int listCount();
-	int listCountSearch(String search);
+	int StuListCount();
+	int StuListCountSearch(String search);
+	
+	//스튜디오 컨텐츠보기
 	StudiocompanyInfoDto selectStudioDetail_view(String infoId);
 	
-	//스튜디오 상품 등록(write)
+	//스튜디오 상품 게시글 등록(write)
 	void insertStudioWrite(StudiocompanyInfoDto stuDto);
+	
+	//스튜디오 상품 게시글 수정(modify)
 	StudiocompanyInfoDto selectStudioModifyView(String infoId);
-	void updateStudioModify(StudiocompanyInfoDto stuDto, MultipartFile file);       
+	void updateStudioModify(StudiocompanyInfoDto stuDto);
+	void deleteStudioDelete(String infoId);
+	
+	//드레스 리스트 가져오기
+	List<StudiocompanyInfoDto> selectDressListAll(int startrow, int endrow);
+	List<StudiocompanyInfoDto> selectDressListSearch(int startrow, int endrow, String search);
+	
+	//드레스 리스트 개수 가져오기
+	int DreListCount();
+	int DreListCountSearch(String search); 
+	
 	
 
 }

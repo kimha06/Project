@@ -131,7 +131,7 @@ function login()
 	var href;
 	
 	try {
-		href = "/membership/log_in.asp?url=" + escape(top.location.href);
+		href = "/member/log_in.asp?url=" + escape(top.location.href);
 	}catch(e){
 		href = "/membership/log_in.asp?url=" + escape("http://verygoodwedding.co.kr/");
 	};
@@ -163,9 +163,18 @@ function logout()
                     <span><img src="/images/m_blog.jpg"></span>
                 </div>
                 <div class="main_favor_inbx">
-                    <span><a href="javascript:login();">로그인</a></span>
-						<span>|</span>
-						<span><a href="/membership/member.asp">회원가입</a></span>
+                	<script type="text/javascript">
+                		if(${session_flag == null || session_flag eq 'fail'}) {
+                    		<span><a href="../member/login">로그인</a></span>
+							<span>|</span>
+							<span><a href="/membership/member.asp">회원가입</a></span>
+                		}else if(){
+                		}else {
+                			<span><a href="../member/login">로그아웃</a></span>
+							<span>|</span>
+							<span><a href="/membership/member.asp">정보수정</a></span>
+                		}
+                	</script>
 					
 				</div>
 			</div>
@@ -176,7 +185,7 @@ function logout()
                     <div class="main_title_menu">
 						<a href="#"><span id="up_menu" data="01" name="up_menu_" class="">웨딩수다소개</span></a>
                         <a href="#"><span id="up_menu" data="02" name="up_menu_" class="">예약</span></a>
-                        <a href="#"><span id="up_menu" data="03" name="up_menu_" class="">정보</span></a>
+                        <a href="../info/studio_list"><span id="up_menu" data="03" name="up_menu_" class="">정보</span></a>
                         <a href="#"><span id="up_menu" data="04" name="up_menu_" class="">지식인</span></a>
                         <a href="#"><span id="up_menu" data="05" name="up_menu_" class="">상품권교환</span></a>
                         <a href="#"><span id="up_menu" data="06" class="M_ttl_menu">커뮤니티</span></a>

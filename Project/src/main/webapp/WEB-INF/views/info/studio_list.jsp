@@ -16,7 +16,7 @@
 <script type="text/javascript" src="/js/document.on.js"></script>
 <script type="text/javascript" src="/js/prog.js"></script>
 <script language="javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -102,7 +102,7 @@
 		<span class="title_detail">결혼 준비의 새로운 기준 웨딩수다와 함께 하세요!</span>
 	    <!--<form name="hall_name" id="hall_name2" method="post">//-->
 			<div class="input_wrap">
-            <input type="text" id="userSerch2" name="keyword" style="padding-left:3px;">
+            <input type="text" id="search" name="search" style="padding-left:3px;">
 			<p class="wedding_hall_serch2"><img src="../images/button/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색"></p>
             </div>
 		<!--</form>//-->
@@ -197,7 +197,7 @@
 					<div class="col_img_wrap">
 						<a href="studio_contentView?infoId=${stuDto.infoId }"><p class="col_img_inbx"><img src="../upload/${stuDto.c_fileName }" alt="${stuDto.c_name }" width="378" height="248" id="pop_img_info" data="1118" style="cursor:pointer;"></p></a>
 			            <div class="col_img_logo">
-							<span><a id="pop_img_info" style="cursor: pointer;" class="col_bg" data="1118">갤러리보기</a></span>
+							<span><a href="studio_contentView?infoId=${stuDto.infoId }" id="pop_img_info" style="cursor: pointer;" class="col_bg" data="1118">상품보기</a></span>
 							<span class="col_gal_ttx_color"><a href="${stuDto.c_onlineAddress }" id="consult_info" class="col_bg" style="">홈페이지</a></span>
 						</div>
 			        </div>
@@ -215,6 +215,57 @@
 </div>
 
 <!-- 페이지번호 -->
+<div id="board_link_wrap">
+		<div id="board_link_num">
+			<c:choose>
+				<c:when test="${map.page <= 1 }">
+				</c:when>
+				<c:otherwise>
+            		<a href="studio_list?search=${map.search }&page=1" title="1페이지">&lt;&lt;</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${map.page <= 1 }">
+				</c:when>
+				<c:otherwise>
+            		<a href="studio_list?search=${map.search }&page=${map.page-1}" title="이전">&lt;</a>
+				</c:otherwise>
+			</c:choose>
+			<!-- 페이지 번호 반복 -->
+			<c:forEach var="nowPage" begin="${map.startPage}" end="${map.endPage }">
+				<c:choose>
+			          <c:when test="${map.page==nowPage}">
+						<span style="font-size:16px;">${nowPage }</span>
+			          </c:when>
+			          <c:otherwise>
+			             <a href="studio_list?search=${map.search }&page=${nowpage}" style="font-size:16px;">${nowPage }</a>
+			          </c:otherwise>
+			        </c:choose>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${map.page >= map.maxPage }">
+				</c:when>
+				<c:otherwise>
+					<a href="studio_list?search=${map.search }&page=${map.page+1}" title="다음" class="num_right">&gt;</a>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when test="${map.page >= map.maxPage }">
+				</c:when>
+				<c:otherwise>
+					<a href="studio_list?search=${map.search }&page=${map.maxPage}" title="끝페이지" class="num_right">&gt;&gt;</a>
+				</c:otherwise>
+			</c:choose>
+        </div>
+        
+<div id="board_write">
+        <a href="studio_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
+    </div>
+</div>
+
+
+
+<!-- 페이지번호 -->
 <!-- <div class="sg_pagination" id="pagination_box" style="">
 	<ul class="paging-viewport">
 		<li class="paging-nav-item on" seq="1" current_no="1"><a href="#" onclick="return false;">1</a></li>
@@ -223,13 +274,17 @@
 		<li class="paging-nav-item " seq="4" current_no="4"><a href="#" onclick="return false;">4</a></li>
 		<li class="paging-nav-item " seq="5" current_no="5"><a href="#" onclick="return false;">5</a></li>
 	</ul>
-</div> -->
+</div>
 
  <div class="online_write_button">
 	<span class="button_pack">
-    	<a href="studio_writeView"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="등록하기" style="cursor:pointer;font-family: NanumBarunGothic;"></span></a>
+    	<a href="studio_writeView"><span class="btn_input">
+    		<input type="button" class="online_lg_color" id="regist_btn" value="상품등록" style="cursor:pointer;font-family: NanumBarunGothic;position: absolute;
+        left: 1000px;
+        top: 780px;">
+        </span></a>
     </span>
- </div>
+ </div> -->
 
 
 
