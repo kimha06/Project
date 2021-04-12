@@ -3,6 +3,7 @@ package com.site.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.site.dto.DresscompanyInfoDto;
+import com.site.dto.MemberDto;
 import com.site.dto.StudiocompanyInfoDto;
 import com.site.mapper.InfoMapper;
 
@@ -26,6 +29,7 @@ public class InfoServiceImpl implements InfoService {
 	Map<String, Object> map;
 	List<StudiocompanyInfoDto> list;
 	StudiocompanyInfoDto stuDto;
+	DresscompanyInfoDto dreDto;
 	@Autowired
 	PageNumber pageNumber;
 
@@ -72,59 +76,62 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto, MultipartHttpServletRequest mtfRequest) { 
+	public Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto, MultipartHttpServletRequest mtfRequest) {
+
 		String safeFile = "";
 		String nFileName = "";
-		// 원본파일이름 
+		// 원본파일이름
 		List<MultipartFile> fileList = mtfRequest.getFiles("file");
-			
-		//String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-		//String fileNameExtension = FilenameUtils.getExtension(fileList[0].getOriginalFilename());
-		//String fileName = mtfRequest.getOriginalFilename();
-		String fileUrl = "C:/Users/하은/git/Project/Project/src/main/resources/static/upload/";
-		
-		//if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
-			for (MultipartFile mf : fileList) {
-				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-				long fileSize = mf.getSize(); // 파일 사이즈
-				safeFile = fileUrl + System.currentTimeMillis() + originFileName;
-				
-				try {
-					mf.transferTo(new File(safeFile));
-				}catch(IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				System.out.println(mf);
+
+		// String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
+		// fileNameExtension;
+		// String fileNameExtension =
+		// FilenameUtils.getExtension(fileList[0].getOriginalFilename());
+		// String fileName = mtfRequest.getOriginalFilename();
+		String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/";
+
+		// if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
+		for (MultipartFile mf : fileList) {
+			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+			long fileSize = mf.getSize(); // 파일 사이즈
+			safeFile = fileUrl + System.currentTimeMillis() + originFileName;
+
+			try {
+				mf.transferTo(new File(safeFile));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			nFileName = "/upload/"+safeFile.substring(fileUrl.length());
-			stuDto.setC_fileName(nFileName);
-			
-			System.out.println("파일 : "+stuDto.getC_fileName());
-		
+			System.out.println(mf);
+		}
+		nFileName = "/upload/" + safeFile.substring(fileUrl.length());
+		stuDto.setC_fileName(nFileName);
+
+		System.out.println("파일 : " + stuDto.getC_fileName());
 
 		// 확장자명 가져오기
-		//String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-		//if (FilenameUtils.getExtension(fileName).toLowerCase() != "") { // 파일 저장 위치
-			// 끝에 /붙여주기 그래야 밑에 // 파일이 저장됨 // 신규파일이름 ( 32자리이름생성.확장자명 )
-			//String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-			//File f = new File(fileUrl + uploadFileName);
-			//try {
-				//file.transferTo(f);
-			//} catch (Exception e) {
-				//e.printStackTrace();
-			//} // 파일이름저장
-			//stuDto.setC_fileName(uploadFileName);
-		//} else {
-			//stuDto.setC_fileName("");
-		//}
+		// String fileNameExtension =
+		// FilenameUtils.getExtension(fileName).toLowerCase();
+		// if (FilenameUtils.getExtension(fileName).toLowerCase() != "") { // 파일 저장 위치
+		// 끝에 /붙여주기 그래야 밑에 // 파일이 저장됨 // 신규파일이름 ( 32자리이름생성.확장자명 )
+		// String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
+		// fileNameExtension;
+		// File f = new File(fileUrl + uploadFileName);
+		// try {
+		// file.transferTo(f);
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// } // 파일이름저장
+		// stuDto.setC_fileName(uploadFileName);
+		// } else {
+		// stuDto.setC_fileName("");
+		// }
 		// mapper전달
 		infoMapper.insertStudioWrite(stuDto);
-		
+
 		return map;
 	}
-
 
 	@Override
 	public Map<String, Object> StudioModifyView(String infoId, String page, String search) {
@@ -148,7 +155,8 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/하은/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에 파일이
+			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			// 이름에 시간추가
@@ -210,6 +218,126 @@ public class InfoServiceImpl implements InfoService {
 
 		map.put("list", list);
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> StudioWrite_view(String userid) {
+		map = new HashMap<String, Object>();
+		MemberDto memberDto = infoMapper.selectWriteView(userid);
+
+		map.put("memberDto", memberDto);
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> DressContent_view(String infoId, String page, String search) {
+
+		dreDto = infoMapper.selectDressContent_view(infoId);
+
+		map.put("dreDto", dreDto);
+		map.put("page", page);
+		map.put("search", search);
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> DressWrite_view(String userid) {
+
+		map = new HashMap<String, Object>();
+		MemberDto memberDto = infoMapper.selectWriteView(userid);
+
+		map.put("memberDto", memberDto);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> DressWrite(DresscompanyInfoDto dreDto, MultipartFile file) {
+		
+		// 원본파일이름
+		String fileName = file.getOriginalFilename();
+		// 확장자명 가져오기
+		String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
+		if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
+			// 파일 저장 위치
+			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에 파일이 저장됨
+			// 신규파일이름 ( 32자리이름생성.확장자명 )
+			String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
+			File f = new File(fileUrl + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 파일이름저장
+			dreDto.setC_fileName(uploadFileName);;
+		} else {
+			dreDto.setC_fileName("");;
+		}
+
+		int writeCheck = infoMapper.insertDressWrite(dreDto); 
+		
+		map.put("writeCheck", writeCheck);
+		
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> DressModifyView(String infoId, String page, String search) {
+		
+		dreDto = infoMapper.selectDressModifyView(infoId);
+		System.out.println("파일이름 : " + dreDto.getC_fileName());
+
+		map.put("dreDto", dreDto);
+		map.put("page", page);
+		map.put("search", search);
+
+		return map;
+	}
+
+	@Override
+	public void DressModify(DresscompanyInfoDto dreDto, MultipartFile file) {
+		
+		System.out.println("modify impl");
+		// 원본파일이름
+		String orgfileName = file.getOriginalFilename();
+		System.out.println("impl : " + orgfileName);
+		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			// 파일 저장 위치
+			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+																									// 파일이
+																									// 저장됨
+			// 신규파일이름 ( 32자리이름생성.확장자명 )
+			// 이름에 시간추가
+			long time = System.currentTimeMillis();
+			String uploadFileName = String.format("%d_%s", time, orgfileName);
+			File f = new File(fileUrl + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 파일이름저장
+			dreDto.setC_fileName(uploadFileName);
+		} else {
+			// 기존 파일이름을 그대로 저장시키면 됨.
+		}
+
+		System.out.println("dreDto InfoId: " + dreDto.getInfoId());
+		System.out.println("dreDto c_fileName: " + dreDto.getC_fileName());
+		System.out.println("dreDto content: " + dreDto.getContent());
+		System.out.println("dreDto c_productName: " + dreDto.getC_productName());
+		
+		infoMapper.updateDressModify(dreDto);
+		
+	}
+
+	@Override
+	public Map<String, Object> DressDelete(String infoId, String page, String search) {
+		
+		return null;
 	}
 
 }

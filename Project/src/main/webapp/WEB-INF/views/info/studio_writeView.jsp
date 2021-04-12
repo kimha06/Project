@@ -56,7 +56,7 @@
 			$("#c_productName").focus();
 			return false;
 		}
-		if($('#c_name').val()=="") {
+		if($('#com_name').val()=="") {
 			alert('업체명을 작성해주세요.');
 			$("#c_name").focus();
 			return false;
@@ -271,6 +271,7 @@ $('#file').change(function(evt) {
      
 	<script type="text/javascript" src="/js/jssor.slider.min.js"></script>
 	<script type="text/javascript">
+	
         jssor_1_slider_init = function() {            
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,$Opacity:2}
@@ -357,8 +358,9 @@ $(document).ready(function() {
 });
 </script>
 <div id="online_write_wrap">    
-   <form name="online_write_box" id="online_write_box" method="post" action="./after_write" enctype="multipart/form-data">
-   <input type="hidden" name="userid" id="userid" value="관리자">
+   <form name="online_write_box" id="online_write_box" method="post" action="" enctype="multipart/form-data">
+   <input type="hidden" name="fileName" id="fileName" value="file">
+   <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
    
    <div class="online_Awrite_form">
       <ul>
@@ -371,7 +373,7 @@ $(document).ready(function() {
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체명</span>
                 <div class="value">
-                <input type="input" name="c_name" id="c_name" class="online_write_input02" value="${session_name }" style="padding-left:5px;color:#000000;">
+                <input type="input" name="com_name" id="com_name" class="online_write_input02" value="${userMap.memberDto.com_name }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
@@ -389,7 +391,7 @@ $(document).ready(function() {
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;영업시간</span>
                 <div class="value">
-                <input type="input" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="input" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="${userMap.memberDto.com_tel }" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li">
@@ -401,7 +403,7 @@ $(document).ready(function() {
             <li class="box_li" >
             <span class="online_write_title" style="font-size:14px;"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;대표이미지</span>
                 <div class="value"> 
-                <input multiple="multiple" type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
+                <input type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
                </div>
                
             </li>

@@ -14,13 +14,13 @@
 		<c:choose>
 			<c:when test="${session_flag == null || session_flag eq 'fail'}">
 				<script type="text/javascript">
-					location.href="메인으로 이동";
+					location.href="../info/studio_list";
 				</script>
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript">
 					alert('로그아웃이 정상적으로 되지 않았습니다.');
-					location.href="메인으로 이동";
+					location.href="../info/studio_list";
 				</script>
 			</c:otherwise>
 		</c:choose>

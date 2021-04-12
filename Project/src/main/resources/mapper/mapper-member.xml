@@ -13,8 +13,7 @@
   
   <!-- 로그인 체크 -->
   <select id="selectMemberLogin" resultType="com.site.dto.MemberDto">
-  	select * from member where userid=#{userid} and pwd=${pwd}
+  	 select * from ws_member where userid=#{userid} and pwd=#{pwd}
   </select>
-  
   
 </mapper>

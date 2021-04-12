@@ -11,7 +11,7 @@
 		<![CDATA[ 
 		  	select * from (select rownum rnum,a.* from 
 		    (select * from StudioCompanyInfo order by infoId desc) a) 
-		    where rnum>=1 and rnum<=9
+		    where rnum>=#{startrow} and rnum<=#{endrow}
 	    ]]> 
 	</select>
 	
@@ -19,7 +19,7 @@
 	<select id="selectStudioListSearch" resultType="com.site.dto.StudiocompanyInfoDto">
 		<![CDATA[ 
 		  	select * from (select rownum rnum,a.* from
-			(select * from StudioCompanyInfo where c_name like '%'||#{search}||'%'
+			(select * from StudioCompanyInfo where com_name like '%'||#{search}||'%'
 			order by infoId desc) a)
 		    where rnum>=#{startrow} and rnum<=#{endrow}
 	    ]]>   
@@ -31,7 +31,7 @@
 	  </select>
 	  <select id="StuListCountSearch" resultType="int">
 	  	<![CDATA[
-	  		select count(*) from StudioCompanyInfo where c_name like '%'||#{search}||'%'
+	  		select count(*) from StudioCompanyInfo where com_name like '%'||#{search}||'%'
 	  	]]> 
 	  </select>
 	  
@@ -40,11 +40,17 @@
 	  	select * from StudioCompanyInfo where infoId=#{infoId}
 	  </select>
 	  
+	  
+	  <!-- 정보 글 등록 전에 업체명과 업체번호 가져오기 -->
+	  <select id="selectWriteView" resultType="com.site.dto.MemberDto">
+	  	select * from ws_member where userid=#{userid}
+	  </select>
+	  
 	  <!-- 정보 글 등록 -->
 	  <insert id="insertStudioWrite">
 	  	<![CDATA[ 
 		  	insert into StudioCompanyInfo values(
-			stu_sequence.nextval,'aaa',#{c_name},#{content},#{c_productName},
+			stu_sequence.nextval,'aaa',#{com_name},#{content},#{c_productName},
 			#{c_productPrice},#{c_onlineAddress},#{c_fileName},'111-1111',#{c_officeHours},#{c_offDays},'서울특별시 강남구 도산대로66길 43 (청담동) B1F')
 	    ]]>
 	  </insert>
@@ -87,7 +93,7 @@
 	<select id="selectDressListSearch" resultType="com.site.dto.DresscompanyInfoDto">
 		<![CDATA[ 
 		  	select * from (select rownum rnum,a.* from
-			(select * from DressCompanyInfo where c_name like '%'||#{search}||'%'
+			(select * from DressCompanyInfo where com_name like '%'||#{search}||'%'
 			order by infoId desc) a)
 		    where rnum>=#{startrow} and rnum<=#{endrow}
 	    ]]>   
@@ -99,8 +105,41 @@
 	  </select>
 	  <select id="DreListCountSearch" resultType="int">
 	  	<![CDATA[
-	  		select count(*) from DressCompanyInfo where c_name like '%'||#{search}||'%'
+	  		select count(*) from DressCompanyInfo where com_name like '%'||#{search}||'%'
 	  	]]> 
 	  </select>
+	  
+	  
+	  <!-- Content_view -->
+	  <select id="selectDressContent_view" resultType="com.site.dto.DresscompanyInfoDto">
+	  	select * from DresscompanyInfo where infoId=#{infoId}
+	  </select>
+	  
+	   <!-- 정보 글 등록 -->
+	  <insert id="insertDressWrite">
+	  	<![CDATA[ 
+		  	insert into DresscompanyInfo values(
+			dre_sequence.nextval,#{userid},#{com_name},#{content},#{c_productName},
+			#{c_productPrice},#{c_onlineAddress},#{c_fileName},#{com_tel},#{c_officeHours},#{c_offDays},'서울특별시 강남구 도산대로66길 43 (청담동) B1F')
+	    ]]>
+	  </insert>
+	  
+	  <!-- 수정하기 위해 데이터 가져오기(modify_view)  -->
+	  <select id="selectDressModifyView" resultType="com.site.dto.DresscompanyInfoDto">
+	  	<![CDATA[
+	  		select * from DresscompanyInfo where infoId=#{infoId}
+	  	]]>
+	  </select>
+	  
+	  <!-- 스튜디오 게시글 수정하기 -->
+	  <update id="updateDressModify">
+	  	<![CDATA[ 
+		  	update DresscompanyInfo set content=#{content},c_productName=#{c_productName},c_productPrice=#{c_productPrice},
+		  	c_onlineAddress=#{c_onlineAddress},c_fileName=#{c_fileName},c_officeHours=#{c_officeHours},c_offDays=#{c_offDays}
+			where infoId=#{infoId}
+	    ]]>
+	  </update>
+	  
+	  
 	
 </mapper>

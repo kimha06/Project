@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("br","<br>"); %>
+<% pageContext.setAttribute("cn","\n"); %>
 <html><head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -41,77 +45,82 @@
 
 <!-- 글쓰기 저장 ajax -->
 <script type="text/javascript">
-function InfoModifyCheck() {
-	alert('성공');
-	/* var form = $('#online_modify_box')[0];
-	// FormData 객체 생성
-	var formData = new FormData(form);  //대신 밑에 formData에 넣어줌 */
-	
-	if($('#c_productName').val()=="") {
-		alert('상품명을 입력해주세요.');
-		$("#c_productName").focus();
-		return false;
-	}
-	if($('#com_name').val()=="") {
-		alert('업체명을 작성해주세요.');
-		$("#com_name").focus();
-		return false;
-	}
-	if($('#c_productPrice').val()=="") {
-		alert('상품가격을 작성해주세요.');
-		$("#c_productPrice").focus();
-		return false;
-	}
-	if($('#c_onlineAddress').val()=="") {
-		alert('홈페이지 주소를 작성해주세요.');
-		$("#c_onlineAddress").focus();
-		return false;
-	}
-	if($('#c_officeHours').val()=="") {
-		alert('영업시간을 작성해주세요.');
-		$("#c_officeHours").focus();
-		return false;
-	}
-	if($('#c_offDays').val()=="") {
-		alert('휴무일을 작성해주세요.');
-		$("#c_offDays").focus();
-		return false;
-	}
-	
-	var fileCheck = document.getElementById("file").value;
-    if(!fileCheck){
-        alert("파일을 첨부해 주세요");
-        return false;
-    }
-	
-	if($('#content').val()=="") {
-		alert('업체내용을 작성해주세요.');
-		$("#content").focus();
-		return false;
-	}
-	
-	document.online_modify_box.submit();
-	
-	/* $.ajax({
-		url:"./studio_modify",
-		type:"post",
-		enctype:"multipart/form-data",
-		data: new FormData($('#online_modify_box')[0]),
-			processData: false,
-			contentType: false,
-			cache : false,
-			//$("#writeForm").serialize(),
-			//"id":"aaa","pw":"1111" 
+	function InfowriteCheck() {
 		
-		success:function(data){ 
-			alert("수정이 완료되었습니다.");
-			location.href="./studio_list";
-		},
-		error:function() {
-			alert('에러');
+		var form = $('#online_write_box')[0];
+		// FormData 객체 생성
+		var formData = new FormData(form);  //대신 밑에 formData에 넣어줌
+		
+		if($('#c_productName').val()=="") {
+			alert('상품명을 작성해주세요.');
+			$("#c_productName").focus();
+			return false;
 		}
-	}); */
-}
+		if($('#com_name').val()=="") {
+			alert('업체명을 작성해주세요.');
+			$("#com_name").focus();
+			return false;
+		}
+		if($('#c_productPrice').val()=="") {
+			alert('상품가격을 작성해주세요.');
+			$("#c_productPrice").focus();
+			return false;
+		}
+		if($('#c_onlineAddress').val()=="") {
+			alert('홈페이지 주소를 작성해주세요.');
+			$("#c_onlineAddress").focus();
+			return false;
+		}
+		if($('#c_officeHours').val()=="") {
+			alert('영업시간을 작성해주세요.');
+			$("#c_officeHours").focus();
+			return false;
+		}
+		if($('#c_offDays').val()=="") {
+			alert('휴무일을 작성해주세요.');
+			$("#c_offDays").focus();
+			return false;
+		}
+		
+		var fileCheck = document.getElementById("file").value;
+	    if(!fileCheck){
+	        alert("파일을 첨부해 주세요");
+	        return false;
+	    }
+		
+		if($('#content').val()=="") {
+			alert('업체내용을 작성해주세요.');
+			$("#content").focus();
+			return false;
+		}
+		
+		var str = $('#content').val();
+	      str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+	      $('#content').val(str);
+		
+	      document.online_write_box.submit();
+		/* $.ajax({
+			url:"./studio_write",
+			type:"post",
+			enctype:"multipart/form-data",
+			data: new FormData($('#online_write_box')[0]),
+				processData: false,
+				contentType: false,
+				cache : false,
+				//$("#writeForm").serialize(),
+				//"id":"aaa","pw":"1111" 
+			
+			success:function(data){ 
+				alert("상품 등록이 완료되었습니다.");
+				location.href="./studio_list";
+			},
+			error:function() {
+				alert('에러');
+			}
+		}); */
+	}
+	    
+	
 </script>
 
 
@@ -251,6 +260,26 @@ function logout()
 	};
 	top.location.replace(href)		
 }
+
+
+var formArray = {};  //파일을 담을 객체 key, value 형태로 파일을 담든다.
+var fileList = new Object();
+
+$('#file').change(function(evt) {
+    fileList = $(this)[0].files;  //파일 대상이 리스트 형태로 넘어온다.
+    for(var i=0;i < fileList.length;i++){
+        var file = fileList[i];
+        const formData = new FormData();
+        formData.append('유니크한아이디', file);  //파일을 더해준다.
+        //만약 여기서 유니크한이이디를 사용하여 테그(노드)를 만든다면
+        //각각 파일에 대해 프로그래싱이 가능하다.
+        $('프로그래스 상태를 나타낼 테그').append('유니크한 아이디를 가진 객체');
+    }
+});
+
+
+
+
 </script>
   
 </head>
@@ -325,15 +354,15 @@ function logout()
 
 <div class="sub_link_box">
 	<div class="sub_link_menu">
-		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/studio_writeView">스튜디오</a></span>
-		<span id="sub_Color_f"><a href="/info/studio_writeView">드레스</a></span>
-        <span id="sub_Color_f"><a href="/community/board_list.asp">헤어메이크업</a></span>
+		<span id="sub_Color_f"><a href="/info/studio_writeView">스튜디오</a></span>
+		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/dress_writeView">드레스</a></span>
+        <span id="sub_Color_f"><a href="/info/hairMakeUp_writeView">헤어메이크업</a></span>
     </div>
 </div>
 <div id="contain02">
 	<div id="contain02_text">
-		<span class="title_name">스튜디오</span>
-        <span class="title_detail">스튜디오 업체 상품 등록 페이지입니다.</span>
+		<span class="title_name">드레스</span>
+        <span class="title_detail">드레스 업체 상품 등록 페이지입니다.</span>
     </div>
 </div>
 
@@ -350,57 +379,79 @@ $(document).ready(function() {
 });
 </script>
 <div id="online_write_wrap">    
-   <form name="online_modify_box" id="online_modify_box" method="post" action="./studio_modify?infoId=${map.stuDto.infoId }" enctype="multipart/form-data">
-   <input type="hidden" name="userid" id="userid" value="관리자">
+   <form name="online_write_box" id="online_write_box" method="post" action="./dress_write" enctype="multipart/form-data">
+   <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
+   <input type="hidden" name="com_tel" id="com_tel" value="${userMap.memberDto.com_tel }">
    
    <div class="online_Awrite_form">
       <ul>
          <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;상품명</span>
                 <div class="value">
-                <input type="text" name="c_productName" id="c_productName" class="online_write_input" value="${map.stuDto.c_productName }" style="padding-left:5px;color:#000000;">
+                <input type="text" name="c_productName" id="c_productName" class="online_write_input" value="" style="padding-left:5px;color:#000000;">
                 </div>
             </li>                
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체명</span>
                 <div class="value">
-                <input type="text" name="com_name" id="com_name" class="online_write_input02" value="${map.stuDto.com_name }" style="padding-left:5px;color:#000000;">
+                <input type="input" name="com_name" id="com_name" class="online_write_input02" value="${userMap.memberDto.com_name }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;상품가격</span>
                 <div class="value">
-                <input type="text" name="c_productPrice" id="c_productPrice" class="online_write_input02" value="${map.stuDto.c_productPrice }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="input" name="c_productPrice" id="c_productPrice" class="online_write_input02" value="" style="padding-left:5px;color:#000000;width:100px;">원
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;홈페이지 주소</span>
                 <div class="value">
-                <input type="text" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="${map.stuDto.c_onlineAddress }" style="padding-left:5px;color:#000000;">
+                <input type="input" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;영업시간</span>
                 <div class="value">
-                <input type="text" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="${map.stuDto.c_officeHours }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="input" name="c_officeHours" id="c_officeHours" class="online_write_input02" value="" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;휴무일</span>
                 <div class="value">
-                <input type="text" name="c_offDays" id="c_offDays" class="online_write_input02" value="${map.stuDto.c_offDays }" style="padding-left:5px;color:#000000;width:100px;">
+                <input type="input" name="c_offDays" id="c_offDays" class="online_write_input02" value="" style="padding-left:5px;color:#000000;width:100px;">
                 </div>
             </li>
             <li class="box_li" >
             <span class="online_write_title" style="font-size:14px;"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;대표이미지</span>
                 <div class="value"> 
-                <input type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
+                <input multiple="multiple" type="file" name="file" id="file" style="margin-left: 10px; margin-top: 12px" >
                </div>
+               
             </li>
              <li class="online_wirte_editor" style="clear:both;">
             <span class="online_write_title02" style="font-size:14px;"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체설명</span>
                 <div class="value">
-                <div><textarea name="content" id="content">${map.stuDto.content }
+                <div><textarea name="content" id="content">● brand's notes
+  -              
+    
+● 주요 특징
+  -
+  
+● 추천 키워드/추천 포인트
+  -
+  
+● 추가 촬영 비용
+  -
+  
+● 전체 스케줄
+  -
+  
+● 웨딩 촬영 소요시간
+  - 
+  
+● 상품 이용 일정 변경 및 취소 시 위약금
+  - 
+  
                 </textarea></div></div>
             </li>
 
@@ -410,8 +461,8 @@ $(document).ready(function() {
     <div class="online_write_button">
       <span class="online_center">
          <span class="button_pack">
-                <span class="btn_input"><button type="button" class="online_lg_color" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;" onclick="InfoModifyCheck()">저장하기</button></span>
-                <a href="/info/studio_list?page=${map.page }&search=${map.search}"><span class="btn_input"><button type="button" class="online_lg_color02" id="link_btn" data="pageNo=&amp;search=&amp;keyword=" style="cursor:pointer;font-family: NanumBarunGothic;">목록으로</button></span></a>
+                <span class="btn_input"><button type="button" class="online_lg_color" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;" onclick="InfowriteCheck()">저장하기</button></span>
+                <a href="/info/dress_list?page=${map.page }&search=${map.search}"><span class="btn_input"><button type="button" class="online_lg_color02" id="link_btn" data="pageNo=&amp;search=&amp;keyword=" style="cursor:pointer;font-family: NanumBarunGothic;">목록으로</button></span></a>
             </span>
         </span>
      </div>

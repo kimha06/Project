@@ -100,12 +100,11 @@
 	<div id="contain02_text">
 		<span class="title_name">스튜디오</span>
 		<span class="title_detail">결혼 준비의 새로운 기준 웨딩수다와 함께 하세요!</span>
-	    <!--<form name="hall_name" id="hall_name2" method="post">//-->
+	   <!--  <form name="hall_name" id="hall_name2" method="post" action="./studio_list"> -->
 			<div class="input_wrap">
             <input type="text" id="search" name="search" style="padding-left:3px;">
 			<p class="wedding_hall_serch2"><img src="../images/button/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색"></p>
-            </div>
-		<!--</form>//-->
+		<!-- </form> -->
 	</div>
 </div>
 <!--<script type="text/javascript">
@@ -195,7 +194,7 @@
 				<div class="col_one_bx">
 			        <!-- 반복시작 -->
 					<div class="col_img_wrap">
-						<a href="studio_contentView?infoId=${stuDto.infoId }"><p class="col_img_inbx"><img src="../upload/${stuDto.c_fileName }" alt="${stuDto.c_name }" width="378" height="248" id="pop_img_info" data="1118" style="cursor:pointer;"></p></a>
+						<a href="studio_contentView?infoId=${stuDto.infoId }"><p class="col_img_inbx"><img src="../upload/${stuDto.c_fileName }" alt="${stuDto.com_name }" width="378" height="248" id="pop_img_info" data="1118" style="cursor:pointer;"></p></a>
 			            <div class="col_img_logo">
 							<span><a href="studio_contentView?infoId=${stuDto.infoId }" id="pop_img_info" style="cursor: pointer;" class="col_bg" data="1118">상품보기</a></span>
 							<span class="col_gal_ttx_color"><a href="${stuDto.c_onlineAddress }" id="consult_info" class="col_bg" style="">홈페이지</a></span>
@@ -203,7 +202,7 @@
 			        </div>
 			        
 					<div class="col_text_wrap">
-						<span class="col_text_name" style="color:#000000;">${stuDto.c_name }</span>
+						<span class="col_text_name" style="color:#000000;">${stuDto.com_name }</span>
 						<!-- <p class="col_more_plus"><img src="../images/plus.png" alt="더보기" id="pop_img_info" data="1118" style="cursor:pointer;"></p> -->
 					</div>
 				</div>
@@ -238,7 +237,7 @@
 						<span style="font-size:16px;">${nowPage }</span>
 			          </c:when>
 			          <c:otherwise>
-			             <a href="studio_list?search=${map.search }&page=${nowpage}" style="font-size:16px;">${nowPage }</a>
+			             <a href="studio_list?search=${map.search }&page=${nowPage}" style="font-size:16px;">${nowPage }</a>
 			          </c:otherwise>
 			        </c:choose>
 			</c:forEach>

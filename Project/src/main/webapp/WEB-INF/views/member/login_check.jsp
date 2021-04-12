@@ -4,22 +4,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>로그인 체크</title>
-	</head>
-	<body>
 		<c:choose>
-			<c:when test="${session_flag == null || session_flag eq 'fail' }">
+			<c:when test="${session_flag == null || session_flag == 'fail' }" >
 				<script type="text/javascript">
-					alert('아이디 또는 비밀번호가 일치하지 않습니다.');
-					location.href="/member/login";
+					alert('아이디 또는 비밀번호가 일치하지 않습니다.! 다시 입력해주세요.!');
+					location.href="./login";
 				</script>
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript">
-					location.href="메인으로 이동";
+					alert('로그인 성공!');
+					location.href="../info/studio_list";
 				</script>
 			</c:otherwise>
 		</c:choose>
+		<meta charset="UTF-8">
+		<title>login_check</title>
+	</head>
+	<body>
+		
 	</body>
 </html>

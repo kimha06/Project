@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>베리굿웨딩</title>
+<title>웨딩수다(드레스 스튜디오)</title>
 <meta name="description" content="웨딩홀, 스드메, 스드메패키지,스드메견적표, 허니문, 웨딩박람회, 혼수, 예물, 결혼준비, 웨딩스튜디오, 웨딩드레스, 예식장 정보 제공">
 <meta name="keywords" content="베리굿웨딩, 웨딩홀, 스드메, 결혼계산기, 스드메패키지, 스드메견적표, 허니문, 웨딩박람회, 혼수, 예물, 결혼준비, 셀프웨딩, 하우스웨딩, 서울웨딩홀, 강남구웨딩홀, 송파구웨딩홀, 서초구웨딩홀, 웨딩스튜디오, 웨딩드레스, 예식장, 웨딩박람회, 2018웨딩박람회, 결혼박람회, 서울웨딩페어, 웨딩페어, 2018웨딩박람회일정, 서울웨딩박람회, 서울웨딩페어박람회, 웨딩박람회일정, 결혼박람회일정, 웨딩플래너, 웨딩페어박람회, 2018서울웨딩박람회, 셀프웨딩드레스, 2018결혼박람회, 다이렉트웨딩, 2018웨딩페어, 스드메패키지비용, 서울결혼박람회, 웨딩결혼박람회, 결혼준비, 2018년웨딩박람회, 웨딩드레스대여, 웨딩업체, 결혼준비순서, 웨딩, 혼수박람회, 결혼준비체크리스트, 예물반지, 예물세트, 셀프웨딩, 결혼준비리스트, 결혼식준비, 스드메등급표, 스드메비용, 웨딩드레스샵, 웨딩드레스쇼핑몰, 웨딩컨설팅, 웨딩플레너비용, 혼수가전제품, 가구박람회, 스드메견적표, 스드메박람회, 웨딩패키지, 웨딩플래너추천, 웨딩플레너, 2018년웨딩박람회일정, 웨딩드레스박람회, 서울웨딩박람회, 결혼식박람회, 드메패키지, 서울결혼박람회일정, 결혼일정, 웨딩페어후기, 셀프웨딩박람회, 예물박람회, 예물시계, 웨딩링, 웨딩스드메, 웨딩혼수박람회, 작은결혼식, 2018년결혼박람회, 결혼웨딩박람회, 결혼준비카페, 결혼커플링, 소규모웨딩, 서울웨딩, 셀프웨딩소품, 셀프웨딩촬영, 스드메추천, 신부예물, 알뜰결혼준비, 웨딩다이어리, 웨딩드레스대여가격">
 <meta name="naver-site-verification" content="5d3ca3c5d4a61a4fcdde9c26a84db72bd3a56255">
@@ -37,98 +37,10 @@
 <!--접속유입통계-->	
 
 	<script type="text/VBScript"> 
-		Function urlencode(str) 
-		Dim buff, temp, acode, i: buff="" 
-
-		For i=1 To Len(str) 
-		acode = Mid(str, i, 1) 
-		If (acode>="0" And acode<="9") Or (acode>="a" And acode<="z") Or (acode>="A" And acode<="Z") Or acode="-" Or acode="_" Or acode="." Then 
-		buff = buff & acode 
-		ElseIf acode= " " Then 
-		buff = buff & "+" 
-		Else 
-		temp = CStr(Hex(Asc(acode))) 
-		If Len(temp)=4 Then 
-		buff = buff & "%" & Left(temp, 2) & "%" & Mid(temp, 3, 2) 
-		ElseIf Len(temp)=2 Then 
-		buff = buff & "%" & temp 
-		End If 
-		End If 
-		Next 
-		urlencode = buff 
-		End Function 
-
-		Function urldecode(str) 
-		Dim buff, acode, i: buff="": i=1 
-
-		Do While i <= Len(str) 
-		acode = Mid(str, i, 1) 
-		If acode = "+" Then 
-		buff = buff & " ": i = i + 1 
-		ElseIf acode = "%" Then 
-		acode = Mid(str, i+1, 2) 
-		If CInt("&H" & acode) < &H80 Then 
-		buff = buff & Chr(CInt("&H" & acode)): i = i + 3 
-		Else 
-		acode = Replace(Mid(str, i + 1, 5), "%", "") 
-		buff = buff & Chr(CInt("&H" & acode)): i = i + 6 
-		End If 
-		Else 
-		buff = buff & acode: i = i + 1 
-		End If 
-		Loop 
-		urldecode = buff 
-		End Function 
+	
 	</script>
 	<script type="text/javascript">
-	<!--
-		$(document).ready
-		(
-			function()
-			{
-				var sep = "link";
-				var url_gubun = "www.verygoodwedding.co.kr";				
-				var keyword = "";			
-				var tourl = "verygoodwedding";
-				var service = "pc";
-				var han_keyword = "";
-				var ip = "61.77.78.67";
-				try
-				{
-					han_keyword = decodeURI(keyword);
-				}
-				catch(e)
-				{
-					try
-					{
-						han_keyword = urldecode(keyword);
-					}
-					catch(e)
-					{
-						han_keyword = keyword;
-					}
-				}
-				
-				if(url_gubun != "")
-				{	
-					var send_data = "sep="+escape(sep)+"&url_gubun="+escape(url_gubun)+"&han_keyword="+escape(han_keyword)+"&tourl="+escape(tourl)+"&service="+escape(service)+"&refer_url=http%3A%2F%2Fwww%2Everygoodwedding%2Eco%2Ekr%2Fgallary%2Fgallery%5Fview%2Easp%3Fcidx%3D611%26data%3D72%26data2%3D&ip="+escape(ip);
-					var send_url="/scrap_visit_log.asp";
 
-					$.ajax
-					(
-						{
-							type : "post",
-							dataType : "html",
-							url : send_url,
-							data : send_data,
-							success:function(data){},
-							error:function(){}
-						}
-					);
-				}
-			}
-		);
-	//-->
 	</script>	
 	
 	
@@ -345,9 +257,9 @@ function logout()
 
 <div class="sub_link_box">
 	<div class="sub_link_menu">
-		<span id="sub_Color_f"><a href="/gallary/gallary_list.asp?data=72">스튜디오</a></span>
-		<span id="sub_Color_f" class="sub_under_bar"><a href="/gallary/gallary_index.asp?data=71">드레스</a></span>
-		<span id="sub_Color_f"><a href="/gallary/gallary_index.asp?data=73">헤어메이크업</a></span>
+		<span id="sub_Color_f"><a href="./studio_list">스튜디오</a></span>
+		<span id="sub_Color_f" class="sub_under_bar"><a href="#">드레스</a></span>
+		<span id="sub_Color_f"><a href="./hairMakeUp_list">헤어메이크업</a></span>
 		<span id="sub_Color_f"><a href="/gallary/gallary_list.asp?data=72&amp;data2=76">웨딩홀</a></span>
 	</div>
 </div>
@@ -371,19 +283,19 @@ function logout()
 <div id="collection_box01">
 	
 	<c:forEach var="dreDto" items="${map.list }" >
-	<div class="SHOP_one_bx">
-		<div class="SHOP_img_wrap">
-			<p class="SHOP_img_inbx"><img src="../upload/${dreDto.c_fileName }" alt="${dreDto.c_name }" width="290" height="370" id="pop_img_info" data="815" style="cursor:pointer;"></p>
-            <div class="SHOP_img_logo">
-				<span><a href="dress_contentView?infoId=${stuDto.infoId}" id="pop_img_info" style="cursor:pointer;" class="SHOP_bg" data="815">상품보기</a></span>
-				<span class="SHOP_gal_ttx_color"><a href="${dreDto.c_onlineAddress }" id="consult_info" class="SHOP_bg">홈페이지</a></span>
+		<div class="SHOP_one_bx">
+			<div class="SHOP_img_wrap">
+				<a href="dress_contentView?infoId=${dreDto.infoId }"><p class="SHOP_img_inbx"><img src="../upload/${dreDto.c_fileName }" alt="${dreDto.com_name }" width="290" height="370" id="pop_img_info" data="815" style="cursor:pointer;"></p></a>
+	            <div class="SHOP_img_logo">
+					<span><a href="dress_contentView?infoId=${dreDto.infoId}" id="pop_img_info" style="cursor:pointer;" class="SHOP_bg" data="815">상품보기</a></span>
+					<span class="SHOP_gal_ttx_color"><a href="${dreDto.c_onlineAddress }" id="consult_info" class="SHOP_bg">홈페이지</a></span>
+				</div>
+	        </div>
+			<div class="SHOP_text_wrap">
+				<span class="SHOP_text_name" style="color:#000000;">${dreDto.com_name }</span>
+				<!--<p class="SHOP_more_plus"><img src="../images/plus.png" alt="더보기" id="pop_img_info" data="815" style="cursor:pointer;" /></p>-->
 			</div>
-        </div>
-		<div class="SHOP_text_wrap">
-			<span class="SHOP_text_name" style="color:#000000;">${dreDto.c_name }</span>
-			<!--<p class="SHOP_more_plus"><img src="../images/plus.png" alt="더보기" id="pop_img_info" data="815" style="cursor:pointer;" /></p>-->
 		</div>
-	</div>
 	</c:forEach>
 
 	
@@ -436,7 +348,7 @@ function logout()
         </div>
         
 	<div id="board_write">
-        <a href="studio_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
+        <a href="dress_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
     </div>
 </div>
 

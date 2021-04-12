@@ -29,7 +29,7 @@
 <div class="m_bx_wrap">
      
 	<script type="text/javascript" src="/js/jssor.slider.min.js"></script>
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
         jssor_1_slider_init = function() {            
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,$Opacity:2}
@@ -69,7 +69,7 @@
             $Jssor$.$AddEvent(window, "resize", ScaleSlider);
             $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);           
         };
-    </script>	
+    </script>	 -->
 	<style>		
 		.jssorb05{position:absolute}.jssorb05 div,.jssorb05 div:hover,.jssorb05 
 		
@@ -117,7 +117,7 @@
     </div>
 </div>
 <script language="javascript">
-$(document).ready(function() {	
+/* $(document).ready(function() {	
 	$('#userid').focus();
 	
 	$("#password").keydown(function(e){
@@ -142,7 +142,7 @@ $(document).ready(function() {
 	$('#register').click(function() {
 		top.location.href = "member.asp";		
 	});	
-});
+}); */
 
 /* function loginSubmit()
 {	
@@ -199,30 +199,52 @@ $(document).ready(function() {
 	});	
 } */
 
-function loginCheck() {
-	
-	userid = $('#userid').val();
-	if (!userid)
-	{
-		alert("아이디를 입력하세요!");
-		$('#userid').focus();
-		return;
-	}
-	password = $('#pwd').val();
-	if (!password)
-	{
-		alert("비밀번호를 입력하세요!");
-		$('#pwd').focus();
-		return;
-	}
-	
-	document.formlogin.submit();
-}
-
 
 </script>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+       function loginCheck(){
+    	   
+    		if (!$('#userid').val())
+    		{
+    			alert("아이디를 입력하세요!");
+    			$('#userid').focus();
+    			return;
+    		}
+    		if (!$('#pwd').val())
+    		{
+    			alert("비밀번호를 입력하세요!");
+    			$('#pwd').focus();
+    			return;
+    		}
+    	   
+    		alert($('#userid').val());
+    		document.formlogin.submit();
+    		
+    	   /* $.ajax({
+			   url:"/member/loginCheck",
+			   type:"post",
+			   data:{
+				   "userid":$("#userid").val(),"pwd":$("#pwd").val()
+			   },
+			   contentType:"application/json",
+			   success:function(data){
+				   if(data.loginCheck==1){
+					   location.href="../info/studio_list";
+				   }else{
+					   alert(data.message);
+				   }
+			   },
+			   error:function(){
+				   alert("에러");
+			   }
+		   }); */
+       }
+    
+    </script>
 <div class="log_in_wrap">
-    <form name="formlogin" method="post" action="./loginCheck">	     
+    <form name="formlogin" method="post" action="/member/loginCheck">	     
         <div class="log_form_box">
             <div id="contain03_text">
             <span class="title" id="log_in_title">Member Login</span>
@@ -251,67 +273,6 @@ function loginCheck() {
 </div>
 
 
-<script language="JavaScript" type="text/JavaScript">
-$(document).ready(function() {
-	var userAgent = navigator.userAgent.toLowerCase();
-	var machine = "";
-	var agent = "";
-	
-	if(userAgent.match('iphone')) 
-	{
-		 machine = "아이폰";
-		 agent = "1"
-	} 
-	else if(userAgent.match('ipad')) 
-	{
-	   machine = "아이패드";
-	   agent = "1"
-	} 
-	else if(userAgent.match('ipod')) 
-	{
-		machine = "아이팟";
-		agent = "1"
-	} 
-	else if(userAgent.match('android')) 
-	{
-		machine = "안드로이드";
-		agent = "1"
-	}
-	else if(userAgent.match('blackberry')) 
-	{
-		machine = "블랙베리";
-		agent = "1"
-	}
-	else if(userAgent.match('LG')) 
-	{
-		machine = "LG";
-		agent = "1"
-	}
-	else if(userAgent.match('MOT')) 
-	{
-		machine = "모토로라";
-		agent = "1"
-	}
-	else if(userAgent.match('SAMSUNG')) 
-	{
-		machine = "SAMSUNG";
-		agent = "1"
-	}
-	else if(userAgent.match('SonyEricsson')) 
-	{
-		machine = "소니에릭손";
-		agent = "1"
-	}
-	if (agent == "1")
-	{
-		$("#mobile_view").show();
-	}
-	
-	$("#mobile_view").click(function() {
-		top.location.href="/mobile";
-	});
-});
-</script>
 <div id="mobile_view" style="font-size:4em;font-weight:bold;text-align:center;height:110px;line-height:110px;display:none;">모바일로 보기</div>
 <!--//footer 끝-->
 

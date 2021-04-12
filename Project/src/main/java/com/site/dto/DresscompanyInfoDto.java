@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 public class DresscompanyInfoDto {
 	
 	private String infoId;
-	private String id;
-	private String c_name;
+	private String userid;
+	private String com_name;
 	private String content;
 	private String c_productName;
 	private String c_productPrice;
 	private String c_onlineAddress;
 	private String c_fileName;
-	private String c_phoneNumber;
+	private String com_tel;
 	private String c_officeHours;
 	private String c_offDays;
 	private String c_address;
