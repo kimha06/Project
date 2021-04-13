@@ -239,7 +239,7 @@ pageContext.setAttribute("cn", "\n");
 	function deleteCheck() {
 		alert("삭제버튼 클릭");
 		if (confirm("삭제하시겠습니까?") == true) {
-			location.href = "./dress_delete?page=${map.page }&infoId=${map.dreDto.infoId}&search=${map.search }";
+			location.href = "./hairMakeUp_delete?page=${map.page }&infoId=${map.hmDto.infoId}&search=${map.search }";
 		} else {
 			return false;
 		}
@@ -468,9 +468,9 @@ cursor
 
 			<div class="sub_link_box">
 				<div class="sub_link_menu">
-					<span id="sub_Color_f"><a href="./studio_list">스튜디오</a></span> 
-					<span id="sub_Color_f" class="sub_under_bar"><a href="./dress_list">드레스</a></span> 
-					<span id="sub_Color_f"><a href="./hairMakeUp_list">헤어메이크업</a></span>
+					<span id="sub_Color_f"><a href="./studio_list">스튜디오</a></span>
+					<span id="sub_Color_f"><a href="./dress_list">드레스</a></span> 
+					<span id="sub_Color_f" class="sub_under_bar"><a href="./hairMakeUp_list">헤어메이크업</a></span> 
 					<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
 					<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
 				</div>
@@ -1437,12 +1437,12 @@ cursor
 						<!--스튜디오제목과 링크-->
 						<div class="pic_top">
 							<div class="pic_top_linkbx">
-								<span class="popup_store_tx">${map.dreDto.com_name } <!--[<span id="now_img_order" style="color:#ed5900"></span>/<span id="max_img_size"></span>]--></span>
+								<span class="popup_store_tx">${map.hmDto.com_name } <!--[<span id="now_img_order" style="color:#ed5900"></span>/<span id="max_img_size"></span>]--></span>
 							</div>
 						</div>
 							
 						</div>
-						<img alt="${map.dreDto.com_name }" src="../upload/${map.dreDto.c_fileName }"> 
+						<img alt="${map.hmDto.com_name }" src="../upload/${map.hmDto.c_fileName }"> 
 						<%-- <div style="position: absolute; width:300px; right:50px; top:100px; ">${fn:replace(map.dreDto.content,br,cn)}</div> --%>
 					</div>
 				</div>
@@ -1457,46 +1457,46 @@ cursor
 			<div class="pop_SStudio_wrap">
 				<div class="pop_SStudio_leftbx">
 					<div class="pop_SStudio_LTtitlebx">
-						<span>드레스 정보</span>
+						<span>헤어메이크업 정보</span>
 					</div>
 					<div class="info" style="padding-left: 30px;">
 						<p class="title">
-							${fn:replace(map.dreDto.content,br,cn)}
+							${fn:replace(map.hmDto.content,br,cn)}
 						</p>
 						<div class="priceInfo">
 							<ul>
 								<li>
 									<div class="stit">  업체명</div>
 									<div class="heavygray">
-										<strong>  -  ${map.dreDto.com_name}</strong>
+										<strong>  -  ${map.hmDto.com_name}</strong>
 									</div>
 								</li>
 								<br>
 								<li>
 									<div class="stit">업체 상품</div>
 									<div class="orange">
-										<strong> - ${map.dreDto.c_productName}</strong>
+										<strong> - ${map.hmDto.c_productName}</strong>
 									</div>
 								</li>
 								<br>
 								<li>
 									<div class="stit">가격</div>
 									<div class="orange">
-										<strong> - ${map.dreDto.c_productPrice}원</strong>
+										<strong> - ${map.hmDto.c_productPrice}원</strong>
 									</div>
 								</li>
 								<br>
 								<li>
 									<div class="stit">업체 전화번호</div>
 									<div class="orange">
-										<strong> - ${map.dreDto.com_tel}</strong>
+										<strong> - ${map.hmDto.com_tel}</strong>
 									</div>
 								</li>
 								<br>
 								<li>
 									<div class="stit">업체 주소</div>
 									<div class="orange">
-										<strong> - ${map.dreDto.c_address}</strong>
+										<strong> - ${map.hmDto.c_address}</strong>
 									</div>
 								</li>
 							</ul>
@@ -1505,24 +1505,22 @@ cursor
 
 					</div>
 					<!-- //info -->
-					<span class="btn_input" style="position: absolute; right: 60px; bottom: 320px;"> 
-					<c:choose>
+					<span class="btn_input" style="position: absolute; right: 60px; bottom: 320px;">
+						<c:choose>
 							<c:when test="${session_userid == map.hmDto.userid }">
-								<a href="dress_modifyView?infoId=${map.hmDto.infoId }">
+								<a href="hairMakeUp_modifyView?infoId=${map.hmDto.infoId }">
 								<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
 								<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck()"></span>
-								<a href="./dress_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+								<a href="./hairMakeUp_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
 							</c:when>
 							<c:otherwise>
 								<a href="#">
 									<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="예약하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span>
 								</a>
-								<a href="./dress_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+								<a href="./hairMakeUp_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
 							</c:otherwise>
 						</c:choose>
 					</span>
-					
-
 
 				</div>
 			</div>

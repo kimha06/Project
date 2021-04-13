@@ -471,6 +471,8 @@ cursor
 					<span id="sub_Color_f" class="sub_under_bar"><a href="./studio_list">스튜디오</a></span> 
 					<span id="sub_Color_f"><a href="./dress_list">드레스</a></span> 
 					<span id="sub_Color_f"><a href="./hairMakeUp_list">헤어메이크업</a></span>
+					<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
+					<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
 				</div>
 			</div>
 			<script
@@ -1491,10 +1493,20 @@ cursor
 					</div>
 					<!-- //info -->
 					<span class="btn_input" style="position: absolute; right: 60px; bottom: 320px;"> 
-					<a href="studio_modifyView?infoId=${map.stuDto.infoId }">
-					<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
-					<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck()"></span>
-					<a href="./studio_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+					<c:choose>
+							<c:when test="${session_userid == map.stuDto.userid }">
+								<a href="studio_modifyView?infoId=${map.stuDto.infoId }">
+								<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+								<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck()"></span>
+								<a href="./studio_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+							</c:when>
+							<c:otherwise>
+								<a href="#">
+									<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="예약하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span>
+								</a>
+								<a href="./studio_list?page=${map.page }&search=${map.search}"><span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="목록" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
+							</c:otherwise>
+						</c:choose>
 					</span>
 					
 

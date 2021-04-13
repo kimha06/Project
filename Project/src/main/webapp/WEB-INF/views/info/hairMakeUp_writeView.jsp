@@ -58,9 +58,30 @@
 		}
 		if($('#com_name').val()=="") {
 			alert('업체명을 작성해주세요.');
-			$("#c_name").focus();
+			$("#com_name").focus();
 			return false;
 		}
+		if($('#c_productPrice').val()=="") {
+			alert('상품가격을 작성해주세요.');
+			$("#c_productPrice").focus();
+			return false;
+		}
+		if($('#c_onlineAddress').val()=="") {
+			alert('홈페이지 주소를 작성해주세요.');
+			$("#c_onlineAddress").focus();
+			return false;
+		}
+		if($('#c_officeHours').val()=="") {
+			alert('영업시간을 작성해주세요.');
+			$("#c_officeHours").focus();
+			return false;
+		}
+		if($('#c_offDays').val()=="") {
+			alert('휴무일을 작성해주세요.');
+			$("#c_offDays").focus();
+			return false;
+		}
+		
 		var fileCheck = document.getElementById("file").value;
 	    if(!fileCheck){
 	        alert("파일을 첨부해 주세요");
@@ -77,7 +98,9 @@
 	      str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
 	      $('#content').val(str);
 		
-		$.ajax({
+	      document.online_write_box.submit();
+		
+/* 		$.ajax({
 			url:"./studio_write",
 			type:"post",
 			enctype:"multipart/form-data",
@@ -95,7 +118,7 @@
 			error:function() {
 				alert('에러');
 			}
-		});
+		}); */
 	}
 	    
 	
@@ -333,17 +356,17 @@ $('#file').change(function(evt) {
 
 <div class="sub_link_box">
 	<div class="sub_link_menu">
-		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/studio_writeView">스튜디오</a></span>
-		<span id="sub_Color_f"><a href="/info/studio_writeView">드레스</a></span>
-        <span id="sub_Color_f"><a href="/community/board_list.asp">헤어메이크업</a></span>
-        <span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
+		<span id="sub_Color_f"><a href="/info/studio_list">스튜디오</a></span>
+        <span id="sub_Color_f"><a href="/info/dress_list">드레스</a></span>
+		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/hairMakeUp_list">헤어메이크업</a></span>
+		<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
 		<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
     </div>
 </div>
 <div id="contain02">
 	<div id="contain02_text">
-		<span class="title_name">스튜디오</span>
-        <span class="title_detail">스튜디오 업체 상품 등록 페이지입니다.</span>
+		<span class="title_name">헤어메이크업</span>
+        <span class="title_detail">헤어메이크업 업체 상품 등록 페이지입니다.</span>
     </div>
 </div>
 
@@ -360,7 +383,7 @@ $(document).ready(function() {
 });
 </script>
 <div id="online_write_wrap">    
-   <form name="online_write_box" id="online_write_box" method="post" action="" enctype="multipart/form-data">
+   <form name="online_write_box" id="online_write_box" method="post" action="./hairMakeUp_write" enctype="multipart/form-data">
    <input type="hidden" name="fileName" id="fileName" value="file">
    <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
    <input type="hidden" name="com_tel" id="com_tel" value="${userMap.memberDto.com_tel }">
@@ -391,7 +414,7 @@ $(document).ready(function() {
                 <input type="input" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
-             <li class="box_li">
+            <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체 주소</span>
                 <div class="value">
                 <input type="input" name="c_address" id="c_address" class="online_write_input02" value="" style="padding-left:5px;color:#000000;">
@@ -428,14 +451,14 @@ $(document).ready(function() {
 ● 추천 키워드/추천 포인트
   -
   
-● 추가 촬영 비용
+● 첫 방문상담 진행 소요시간
   -
   
-● 전체 스케줄
+● 헤어, 메이크업 직급 지정비용
   -
   
-● 웨딩 촬영 소요시간
-  - 
+● 어머님 헤어피스(달비) 이용 시 비용
+  -
   
 ● 상품 이용 일정 변경 및 취소 시 위약금
   - 
@@ -450,7 +473,7 @@ $(document).ready(function() {
       <span class="online_center">
          <span class="button_pack">
                 <span class="btn_input"><button type="button" class="online_lg_color" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;" onclick="InfowriteCheck()">저장하기</button></span>
-                <a href="/info/studio_list?page=${map.page }&search=${map.search}"><span class="btn_input"><button type="button" class="online_lg_color02" id="link_btn" data="pageNo=&amp;search=&amp;keyword=" style="cursor:pointer;font-family: NanumBarunGothic;">목록으로</button></span></a>
+                <a href="/info/hairMakeUp_list?page=${map.page }&search=${map.search}"><span class="btn_input"><button type="button" class="online_lg_color02" id="link_btn" data="pageNo=&amp;search=&amp;keyword=" style="cursor:pointer;font-family: NanumBarunGothic;">목록으로</button></span></a>
             </span>
         </span>
      </div>

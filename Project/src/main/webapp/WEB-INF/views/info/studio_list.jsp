@@ -30,6 +30,14 @@
      
 	<script type="text/javascript" src="/js/jssor.slider.min.js"></script>
 	<script type="text/javascript">
+	
+	//검색시 값 넘기기
+	function searchSubmit() {
+		document.hall_name.submit();
+	}
+	
+	
+	
         jssor_1_slider_init = function() {            
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,$Opacity:2}
@@ -92,6 +100,8 @@
 		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/studio_list">스튜디오</a></span>
         <span id="sub_Color_f"><a href="/info/dress_list">드레스</a></span>
 		<span id="sub_Color_f"><a href="/info/hairMakeUp_list">헤어메이크업</a></span>
+		<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
+		<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
     </div>
 </div>
 
@@ -100,11 +110,12 @@
 	<div id="contain02_text">
 		<span class="title_name">스튜디오</span>
 		<span class="title_detail">결혼 준비의 새로운 기준 웨딩수다와 함께 하세요!</span>
-	   <!--  <form name="hall_name" id="hall_name2" method="post" action="./studio_list"> -->
-			<div class="input_wrap">
-            <input type="text" id="search" name="search" style="padding-left:3px;">
-			<p class="wedding_hall_serch2"><img src="../images/button/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색"></p>
-		<!-- </form> -->
+		<div class="input_wrap">
+		   	<form name="hall_name" id="hall_name2" method="post" action="./studio_list">
+	            <input type="text" id="search" name="search" style="padding-left:3px;">
+				<p class="wedding_hall_serch2"><img src="../images/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색" onclick="searchSubmit()"></p>
+			</form>
+		</div>
 	</div>
 </div>
 <!--<script type="text/javascript">
@@ -262,28 +273,6 @@
     </div>
 </div>
 
-
-
-<!-- 페이지번호 -->
-<!-- <div class="sg_pagination" id="pagination_box" style="">
-	<ul class="paging-viewport">
-		<li class="paging-nav-item on" seq="1" current_no="1"><a href="#" onclick="return false;">1</a></li>
-		<li class="paging-nav-item " seq="2" current_no="2"><a href="#" onclick="return false;">2</a></li>
-		<li class="paging-nav-item " seq="3" current_no="3"><a href="#" onclick="return false;">3</a></li>
-		<li class="paging-nav-item " seq="4" current_no="4"><a href="#" onclick="return false;">4</a></li>
-		<li class="paging-nav-item " seq="5" current_no="5"><a href="#" onclick="return false;">5</a></li>
-	</ul>
-</div>
-
- <div class="online_write_button">
-	<span class="button_pack">
-    	<a href="studio_writeView"><span class="btn_input">
-    		<input type="button" class="online_lg_color" id="regist_btn" value="상품등록" style="cursor:pointer;font-family: NanumBarunGothic;position: absolute;
-        left: 1000px;
-        top: 780px;">
-        </span></a>
-    </span>
- </div> -->
 
 
 

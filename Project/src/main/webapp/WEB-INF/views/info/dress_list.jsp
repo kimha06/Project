@@ -196,6 +196,13 @@ function logout()
      
 	<script type="text/javascript" src="/js/jssor.slider.min.js"></script>
 	<script type="text/javascript">
+	
+	//검색시 값 넘기기
+	function searchSubmit() {
+		document.hall_name.submit();
+	}
+	
+	
         jssor_1_slider_init = function() {            
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,$Opacity:2}
@@ -260,17 +267,19 @@ function logout()
 		<span id="sub_Color_f"><a href="./studio_list">스튜디오</a></span>
 		<span id="sub_Color_f" class="sub_under_bar"><a href="#">드레스</a></span>
 		<span id="sub_Color_f"><a href="./hairMakeUp_list">헤어메이크업</a></span>
-		<span id="sub_Color_f"><a href="/gallary/gallary_list.asp?data=72&amp;data2=76">웨딩홀</a></span>
+		<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
+		<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
 	</div>
 </div>
 <div id="contain02">
 	<div id="contain02_text">
 		<span class="title_name">드레스</span>
 		<span class="title_detail">결혼 준비의 새로운 기준 베리굿웨딩과 함께 하세요!</span>
-	    <!--<form name="hall_name" id="hall_name2" method="post">//-->
 			<div class="input_wrap">
-            <input type="text" id="userSerch2" name="keyword" style="padding-left:3px;">
-			<p class="wedding_hall_serch2"><img src="../images/button/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색"></p>
+			<form name="hall_name" id="hall_name2" method="post" action="./dress_list">
+	            <input type="text" id="search" name="search" style="padding-left:3px;">
+				<p class="wedding_hall_serch2"><img src="../images/index_zoom02.png" id="search_btn" style="cursor:pointer;" alt="검색" onclick="searchSubmit()"></p>
+			</form>
             </div>
 		<!--</form>//-->
 	</div>
@@ -310,14 +319,14 @@ function logout()
 				<c:when test="${map.page <= 1 }">
 				</c:when>
 				<c:otherwise>
-            		<a href="studio_list?search=${map.search }&page=1" title="1페이지">&lt;&lt;</a>
+            		<a href="dress_list?search=${map.search }&page=1" title="1페이지">&lt;&lt;</a>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
 				<c:when test="${map.page <= 1 }">
 				</c:when>
 				<c:otherwise>
-            		<a href="studio_list?search=${map.search }&page=${map.page-1}" title="이전">&lt;</a>
+            		<a href="dress_list?search=${map.search }&page=${map.page-1}" title="이전">&lt;</a>
 				</c:otherwise>
 			</c:choose>
 			<!-- 페이지 번호 반복 -->
@@ -327,7 +336,7 @@ function logout()
 						<span style="font-size:16px;">${nowPage }</span>
 			          </c:when>
 			          <c:otherwise>
-			             <a href="studio_list?search=${map.search }&page=${nowpage}" style="font-size:16px;">${nowPage }</a>
+			             <a href="dress_list?search=${map.search }&page=${nowpage}" style="font-size:16px;">${nowPage }</a>
 			          </c:otherwise>
 			        </c:choose>
 			</c:forEach>
@@ -335,14 +344,14 @@ function logout()
 				<c:when test="${map.page >= map.maxPage }">
 				</c:when>
 				<c:otherwise>
-					<a href="studio_list?search=${map.search }&page=${map.page+1}" title="다음" class="num_right">&gt;</a>
+					<a href="dress_list?search=${map.search }&page=${map.page+1}" title="다음" class="num_right">&gt;</a>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
 				<c:when test="${map.page >= map.maxPage }">
 				</c:when>
 				<c:otherwise>
-					<a href="studio_list?search=${map.search }&page=${map.maxPage}" title="끝페이지" class="num_right">&gt;&gt;</a>
+					<a href="dress_list?search=${map.search }&page=${map.maxPage}" title="끝페이지" class="num_right">&gt;&gt;</a>
 				</c:otherwise>
 			</c:choose>
         </div>

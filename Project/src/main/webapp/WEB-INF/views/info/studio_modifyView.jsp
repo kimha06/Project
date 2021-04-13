@@ -328,6 +328,8 @@ function logout()
 		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/studio_writeView">스튜디오</a></span>
 		<span id="sub_Color_f"><a href="/info/studio_writeView">드레스</a></span>
         <span id="sub_Color_f"><a href="/community/board_list.asp">헤어메이크업</a></span>
+       	<span id="sub_Color_f"><a href="./weddingHall_list">웨딩홀</a></span>
+		<span id="sub_Color_f"><a href="./travel_list">허니문</a></span>
     </div>
 </div>
 <div id="contain02">
@@ -377,6 +379,12 @@ $(document).ready(function() {
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;홈페이지 주소</span>
                 <div class="value">
                 <input type="text" name="c_onlineAddress" id="c_onlineAddress" class="online_write_input02" value="${map.stuDto.c_onlineAddress }" style="padding-left:5px;color:#000000;">
+                </div>
+            </li>
+             <li class="box_li">
+            <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체 주소</span>
+                <div class="value">
+                <input type="input" name="c_address" id="c_address" class="online_write_input02" value="${map.stuDto.c_address }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">

@@ -210,14 +210,10 @@ function logout()
                          	<a href="/gallary/gallary_list.asp?data=72"><!--<span class="M_Sub_ttl">//--><span>스튜디오</span></a>
                             <a href="/gallary/gallary_index.asp?data=71"><span>드레스</span></a>
                             <a href="/gallary/gallary_index.asp?data=73"><span>헤어메이크업</span></a>
-                            <a href="/gallary/gallary_list.asp?data=72&amp;data2=76"><span>본식사진</span></a>
+                            <a href="/info/wedding"><span>웨딩홀</span></a>
                          </div>
                          <div class="m_honsu">
-                         	<a href="/gallary/gallary_etc_list.asp?data=91,147"><span>예물</span></a>
-                            <a href="/gallary/gallary_etc_list.asp?data=92"><span>한복</span></a>
-                            <a href="/gallary/gallary_etc_list.asp?data=93"><span>신혼여행</span></a>
-                            <a href="/gallary/gallary_etc_list.asp?data=98"><span>예복</span></a>
-                            <a href="/gallary/gallary_etc_list.asp?data=101,102,157"><span>혼수</span></a>
+                            <a href="/info/trevel"><span>신혼여행</span></a>
                          </div>
                          <div class="m_honey">
                          	<a href="/honeymoon/honey_sub.asp"><span>허니문</span></a>

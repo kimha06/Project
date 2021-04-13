@@ -6,8 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.site.dto.DresscompanyInfoDto;
+import com.site.dto.HMcompanyInfoDto;
 import com.site.dto.MemberDto;
 import com.site.dto.StudiocompanyInfoDto;
+import com.site.dto.TravelcompanyInfoDto;
+import com.site.dto.questionBoardDto;
 
 @Mapper
 public interface InfoMapper {
@@ -21,7 +24,7 @@ public interface InfoMapper {
 	int StuListCountSearch(String search);
 	
 	//스튜디오 컨텐츠보기
-	StudiocompanyInfoDto selectStudioDetail_view(String infoId);
+	StudiocompanyInfoDto selectStudioContent_view(String infoId);
 	
 	//스튜디오 리스트와 회원 테이블 조인하기
 	MemberDto selectWriteView(String userid);
@@ -31,14 +34,14 @@ public interface InfoMapper {
 	
 	//스튜디오 상품 게시글 수정(modify)
 	StudiocompanyInfoDto selectStudioModifyView(String infoId);
-	void updateStudioModify(StudiocompanyInfoDto stuDto);
+	int updateStudioModify(StudiocompanyInfoDto stuDto);
 	
 	//스튜디오 상품 삭제
 	void deleteStudioDelete(String infoId);
 	
 	//드레스 리스트 가져오기
-	List<StudiocompanyInfoDto> selectDressListAll(int startrow, int endrow);
-	List<StudiocompanyInfoDto> selectDressListSearch(int startrow, int endrow, String search);
+	List<DresscompanyInfoDto> selectDressListAll(int startrow, int endrow);
+	List<DresscompanyInfoDto> selectDressListSearch(int startrow, int endrow, String search);
 	
 	//드레스 리스트 개수 가져오기 
 	int DreListCount();
@@ -52,7 +55,48 @@ public interface InfoMapper {
 	
 	//드레스 상품 수정(modify)
 	DresscompanyInfoDto selectDressModifyView(String infoId);
-	void updateDressModify(DresscompanyInfoDto dreDto);    
+	int updateDressModify(DresscompanyInfoDto dreDto);
+	
+	//드레스 상품 삭제
+	void deleteDressDelete(String infoId);
+	
+	//헤어페이크업 리스트 가져오기
+	List<HMcompanyInfoDto> selectHmListAll(int startrow, int endrow);
+	List<HMcompanyInfoDto> selectHmListSearch(int startrow, int endrow, String search);
+	
+	//헤어페이크업 리스트 개수 가져오기
+	int HmListCount();
+	int HmListCountSearch(String search);
+	
+	//헤어메이크업 컨텐츠보기
+	HMcompanyInfoDto selectHmContent_view(String infoId);
+	
+	//헤어메이크업 상품 게시글 등록(write)
+	int insertHmWrite(HMcompanyInfoDto hmDto);
+	
+	//헤어메이크업 상품 수정(modify)
+	HMcompanyInfoDto selectHmModifyView(String infoId);
+	int updateHmModify(HMcompanyInfoDto hmDto);
+	
+	//헤어메이크업 상품 삭제
+	void deleteHmDelete(String infoId);
+	
+	//허니문 리스트가져오기
+	List<TravelcompanyInfoDto> selectTravelListAll(int startrow, int endrow);
+	
+	//허니문 리스트 개수 가져오기
+	int TravelListCount();
+	
+	//허니문 상품 게시글 등록(write)
+	int insertTravelWrite(TravelcompanyInfoDto traDto);
+	
+	//웨딩홀/허니문 문의게시판 리스트 가져오기
+	List<questionBoardDto> selectQuestionListAll(int startrow, int endrow);
+	List<questionBoardDto> selectQuestionListSearch(int startrow, int endrow, String search);
+	
+	//웨딩홀/허니문 문의게시판 리스트 개수 가져오기(얘네는 pageNumber에서 들어옴)
+	int QuestionListCount();
+	int QuestionListCountSearch(String search);     
 	
 	
 	

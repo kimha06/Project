@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.site.dto.DresscompanyInfoDto;
+import com.site.dto.HMcompanyInfoDto;
 import com.site.dto.MemberDto;
 import com.site.dto.StudiocompanyInfoDto;
+import com.site.dto.TravelcompanyInfoDto;
 import com.site.service.InfoService;
 
 @Controller
@@ -33,6 +35,7 @@ public class InfoController {
 	
 	@RequestMapping("/info/studio_list")
 	public String studio_list(@RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
+		
 		System.out.println("search : "+search);
 		map = infoService.StudioList(page,search);
 		System.out.println("studio_list page : "+page);
@@ -52,13 +55,34 @@ public class InfoController {
 	}
 	
 	@RequestMapping("/info/hairMakeUp_list")
-	public String hairMakeUp_list() {
+	public String hairMakeUp_list(@RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
+		map = infoService.HmList(page,search);
+		System.out.println("studio_list page : "+page);
+		System.out.println("com_name : "+map.get("com_name"));
+		model.addAttribute("map", map);
+		
 		return "/info/hairMakeUp_list";
 	}
 	
-	@RequestMapping("/info/wishlist")
-	public String wishlist() {
-		return "/info/wishlist";
+	@RequestMapping("/info/travel_list")
+	public String travel_list(@RequestParam @Nullable String page, Model model) {
+		
+		map = infoService.TravelList(page);
+		System.out.println("studio_list page : "+page);
+		System.out.println("com_name : "+map.get("com_name"));
+		
+		model.addAttribute("map", map);
+		
+		return "/info/travel_list";
+	}
+	
+	@RequestMapping("/info/question_list")
+	public String question_list(@RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.QuestionList(page,search);
+		model.addAttribute("map", map);
+		
+		return "/info/question_list";
 	}
 	
 	
@@ -66,7 +90,7 @@ public class InfoController {
 	@RequestMapping("/info/studio_contentView")
 	public String studio_contentView(@RequestParam String infoId, @RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
 		
-		map = infoService.StudioDetail_view(infoId,page,search);
+		map = infoService.StudioContent_view(infoId,page,search);
 		
 		model.addAttribute("map", map);
 		
@@ -81,6 +105,16 @@ public class InfoController {
 		model.addAttribute("map", map);
 		
 		return "/info/dress_contentView";
+	}
+	
+	@RequestMapping("/info/hairMakeUp_contentView")
+	public String hairMakeUp_contentView(@RequestParam String infoId, @RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.HmContent_view(infoId,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/hairMakeUp_contentView";
 	}
 	
 	
@@ -114,6 +148,34 @@ public class InfoController {
 		return "/info/dress_writeView";
 	}
 	
+	@RequestMapping("/info/hairMakeUp_writeView")
+	public String hairMakeUp_writeView(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("session_flag") != null && session.getAttribute("session_flag").equals("success")) {
+			String userid = (String) session.getAttribute("session_userid"); 
+			Map<String, Object> userMap = infoService.HmWrite_view(userid);
+			
+			model.addAttribute("userMap", userMap);
+		}
+		
+		return "/info/hairMakeUp_writeView";
+	}
+	
+	@RequestMapping("/info/travel_writeView")
+	public String travel_writeView(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("session_flag") != null && session.getAttribute("session_flag").equals("success")) {
+			String userid = (String) session.getAttribute("session_userid"); 
+			Map<String, Object> userMap = infoService.TravelWrite_view(userid);
+			
+			model.addAttribute("userMap", userMap);
+		}
+		
+		return "/info/travel_writeView";
+	}
+	
 	
 	
 	//글쓰기
@@ -138,6 +200,30 @@ public class InfoController {
 		return "/info/dressWriteCheck";
 	}
 	
+	@RequestMapping("/info/hairMakeUp_write")
+	public String hairMakeUp_write(HMcompanyInfoDto hmDto, @RequestPart MultipartFile file, Model model) {
+		
+		System.out.println("hmDto userid : "+hmDto.getUserid());
+		System.out.println("hmDto 전화번호 : "+hmDto.getCom_tel());
+		
+		map = infoService.HmWrite(hmDto,file);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/hairMakeUpWriteCheck";
+	}
+	
+	@RequestMapping("/info/travel_write")
+	public String travel_write(TravelcompanyInfoDto traDto, @RequestPart MultipartFile file1, @RequestPart MultipartFile file2, Model model) {
+		
+		map = infoService.TravelWrite(traDto,file1,file2);
+
+		model.addAttribute("map", map);
+		
+		return "/info/travelWriteCheck";
+	}
+	
+	
 	//수정페이지
 	@RequestMapping("/info/studio_modifyView")
 	public String studio_modifyView(@RequestParam String infoId, @RequestParam @Nullable String page,
@@ -157,20 +243,30 @@ public class InfoController {
 		return "/info/dress_modifyView";
 	}
 	
+	@RequestMapping("/info/hairMakeUp_modifyView")
+	public String hairMakeUp_modifyView(@RequestParam String infoId, @RequestParam @Nullable String page,
+			@RequestParam @Nullable String search, Model model) {
+		map = infoService.HmModifyView(infoId,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/hairMakeUp_modifyView";
+	}
+	
 	
 	//글수정
 	@RequestMapping("/info/studio_modify")
 	public String studio_modify(StudiocompanyInfoDto stuDto, @RequestParam @Nullable String page,
 			@RequestPart MultipartFile file, @RequestParam @Nullable String search, Model model) throws Exception {
 		System.out.println("studio_modify controller InfoId : "+stuDto.getInfoId());
-		infoService.StudioModify(stuDto,file);
+		map = infoService.StudioModify(stuDto,file);
 		/*
 		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
 		 * 한글깨짐 방지하기 위해 }
 		 */
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
-		return "redirect:/info/studio_list";
+		return "redirect:/info/studioModifyCheck";
 	}
 	
 	@RequestMapping("/info/dress_modify")
@@ -179,7 +275,7 @@ public class InfoController {
 		
 		System.out.println("dreDto_modify controller InfoId : "+dreDto.getInfoId());
 		
-		infoService.DressModify(dreDto,file);
+		map = infoService.DressModify(dreDto,file);
 		/*
 		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
 		 * 한글깨짐 방지하기 위해 }
@@ -187,7 +283,24 @@ public class InfoController {
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
 		
-		return "redirect:/info/dress_list";
+		return "/info/dressModifyCheck";
+	}
+	
+	@RequestMapping("/info/hairMakeUp_modify")
+	public String hairMakeUp_modify(HMcompanyInfoDto hmDto, @RequestParam @Nullable String page,
+			@RequestPart MultipartFile file, @RequestParam @Nullable String search, Model model) throws Exception {
+		
+		System.out.println("hmDto_modify controller InfoId : "+hmDto.getInfoId());
+		
+		map = infoService.HmModify(hmDto,file);
+		/*
+		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
+		 * 한글깨짐 방지하기 위해 }
+		 */
+		model.addAttribute("page", page);
+		model.addAttribute("search", search);
+		
+		return "/info/hairMakeUpModifyCheck";
 	}
 	
 	//글삭제
@@ -209,6 +322,17 @@ public class InfoController {
 		model.addAttribute("map", map);
 		
 		return "redirect:/info/dress_list";
+	}
+	
+	@RequestMapping("/info/hairMakeUp_delete")
+	public String hairMakeUp_delete(@RequestParam String infoId, @RequestParam @Nullable String page,
+			@RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.HmDelete(infoId,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "redirect:/info/hairMakeUp_list";
 	}
 	
 }

@@ -219,7 +219,6 @@
     			return;
     		}
     	   
-    		alert($('#userid').val());
     		document.formlogin.submit();
     		
     	   /* $.ajax({
