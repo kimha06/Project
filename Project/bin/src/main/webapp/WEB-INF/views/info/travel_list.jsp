@@ -42,28 +42,25 @@
 <link rel="stylesheet" type="text/css"
 	href="/css/jquery-ui-1.10.4.custom.css">
 
-
+<!--<link rel="stylesheet" type="text/css" href="/css/re/style.css">
+<link rel="stylesheet" type="text/css" href="/css/re/jquery.mmenu.all.css">
+<link rel="stylesheet" type="text/css" href="/css/re/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/re/settings.css">-->
+<!--[If lt IE 7]>
+    <script src="/js/IE7.js"></script>
+ <![endif]-->
+<!--[If lt IE 8]>
+    <script src="/js/IE8.js"></script>
+ <![endif]-->
+<!--[If lt IE 9]>
+    <script src="/js/IE9.js"></script>
+ <![endif]-->
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/document.on.js"></script>
 <script type="text/javascript" src="/js/prog.js"></script>
 <script language="javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-	
-	<!-- 삭제버튼 클릭시 -->
-<script type="text/javascript">
-
-
-	function deleteCheck(infoId) {
-		if (confirm("삭제하시겠습니까?") == true) {
-			location.href = "./travel_delete?infoId="+infoId;
-		} else {
-			return false;
-		}
-	}
-</script>
-
-
 
 <script language="javascript">
 	$(document).ready(
@@ -280,16 +277,10 @@
 								<table width="120" border="0" cellpadding="0" cellspacing="0" align="center">
 									<tbody>
 										<tr>
-											<c:choose>
-												<c:when test="${session_userid == map.traDto.userid }">
-													<a href="travel_modifyView?infoId=${traDto.infoId }">
-														<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
-														<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck('${traDto.infoId}')"></span>
-												</c:when>											</c:choose>
-													<td align="center"
-														style="width: 120px; height: 34px; cursor: pointer; border: 1px solid #d9d8d8; line-height: 34px; font-size: 17px; background-color: #fe4253; color: #ffffff; text-align: center;"
-														gubun="혼수상담" title="${traDto.com_name }" category="혼수상담" qidx="1000"
-														id="btn_layer_consult" onclick="location.href='./question_list'">문의하기</td>
+											<td align="center"
+												style="width: 120px; height: 34px; cursor: pointer; border: 1px solid #d9d8d8; line-height: 34px; font-size: 17px; background-color: #fe4253; color: #ffffff; text-align: center;"
+												gubun="혼수상담" title="${traDto.com_name }" category="혼수상담" qidx="1000"
+												id="btn_layer_consult" onclick="location.href='./question_list'">문의하기</td>
 										</tr>
 									</tbody>
 								</table>
@@ -308,22 +299,8 @@
 
 								<p style="font-size: 13px;">${traDto.c_price }</p>
 							</div>
-			<%-- <!-- //info -->
-			<span class="btn_input" style="position: absolute; right: 60px; bottom: 320px;"> 
-				<c:choose>
-					<c:when test="${session_userid == map.traDto.userid }">
-						<a href="travel_modifyView?infoId=${traDto.infoId }">
-							<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
-						<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck()"></span>
-					</c:when>
-				<c:otherwise>
-				</c:otherwise>
-			    </c:choose>
-			</span> --%>
 							<div style="height: 10px;"></div>
 						</div>
-						
-						
 					</div>
 				</div>
 
@@ -331,7 +308,6 @@
 				<!-- 반복 끝 -->
 
 			</div>
-			
 		</div>
 	</div>
 

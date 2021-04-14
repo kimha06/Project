@@ -38,6 +38,8 @@ public class InfoServiceImpl implements InfoService {
 	StudiocompanyInfoDto stuDto;
 	DresscompanyInfoDto dreDto;
 	HMcompanyInfoDto hmDto;
+	TravelcompanyInfoDto traDto;
+	questionBoardDto queDto;
 	@Autowired
 	PageNumber pageNumber;
 
@@ -96,7 +98,7 @@ public class InfoServiceImpl implements InfoService {
 		// String fileNameExtension =
 		// FilenameUtils.getExtension(fileList[0].getOriginalFilename());
 		// String fileName = mtfRequest.getOriginalFilename();
-		String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/";
+		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/";
 
 		// if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
 		for (MultipartFile mf : fileList) {
@@ -163,9 +165,9 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
-																									// 파일이
-																									// 저장됨
+			String fileUrl = "C:/Users/User/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+																										// 파일이
+																										// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			// 이름에 시간추가
 			long time = System.currentTimeMillis();
@@ -267,8 +269,8 @@ public class InfoServiceImpl implements InfoService {
 		String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
 		if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
-																									// 파일이 저장됨
+			String fileUrl = "C:/Users/User/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+																										// 파일이 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
 			File f = new File(fileUrl + uploadFileName);
@@ -314,7 +316,7 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
@@ -411,7 +413,7 @@ public class InfoServiceImpl implements InfoService {
 		String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
 		if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -455,7 +457,7 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
@@ -532,34 +534,34 @@ public class InfoServiceImpl implements InfoService {
 
 	@Override
 	public Map<String, Object> TravelWrite(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2) {
-		
-		String fileUrl = "C:/Users/User/git/Project/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
-		
+
+		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+
 		// 원본파일이름
 		String fileName1 = file1.getOriginalFilename();
-		System.out.println("대표이미지 : "+fileName1);
+		System.out.println("대표이미지 : " + fileName1);
 		String fileName2 = file2.getOriginalFilename();
-		System.out.println("로고 : "+fileName2);
+		System.out.println("로고 : " + fileName2);
 		// 확장자명 가져오기
 		String fileNameExtension1 = FilenameUtils.getExtension(fileName1).toLowerCase();
 		String fileNameExtension2 = FilenameUtils.getExtension(fileName2).toLowerCase();
-		
+
 		if (FilenameUtils.getExtension(fileName1).toLowerCase() != "") {
 			// 파일 저장 위치
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			String uploadFileName1 = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension1;
 			// 파일이 저장됨
 			File f1 = new File(fileUrl + uploadFileName1);
-				try {
-					file1.transferTo(f1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				traDto.setC_image(uploadFileName1);
-			
-			if(FilenameUtils.getExtension(fileName2).toLowerCase() != "") {
+			try {
+				file1.transferTo(f1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			traDto.setC_image(uploadFileName1);
+
+			if (FilenameUtils.getExtension(fileName2).toLowerCase() != "") {
 				String uploadFileName2 = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension2;
-				
+
 				File f2 = new File(fileUrl + uploadFileName2);
 				try {
 					file2.transferTo(f2);
@@ -568,7 +570,7 @@ public class InfoServiceImpl implements InfoService {
 				}
 				// 파일이름저장
 				traDto.setC_logo(uploadFileName2);
-			}else {
+			} else {
 				traDto.setC_logo("");
 			}
 		} else {
@@ -578,40 +580,222 @@ public class InfoServiceImpl implements InfoService {
 		int writeCheck = infoMapper.insertTravelWrite(traDto);
 
 		map.put("writeCheck", writeCheck);
-		
+
 		return map;
 	}
 
 	@Override
+	public Map<String, Object> TravelModifyView(String infoId, String page, String search) {
+
+		traDto = infoMapper.selectTravelModifyView(infoId);
+		System.out.println("대표이미지 : " + traDto.getC_image());
+
+		map.put("traDto", traDto);
+		map.put("page", page);
+		map.put("search", search);
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> TravelModify(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2) {
+
+		// 파일 저장 위치
+		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
+		// 원본파일이름
+		String orgfileName1 = file1.getOriginalFilename();
+		String orgfileName2 = file2.getOriginalFilename();
+		System.out.println("impl : " + orgfileName1);
+		if (file1.getSize() != 0) { // 파일사이즈가 0이 아니면
+			// 신규파일이름 ( 32자리이름생성.확장자명 ),(이름에 시간추가)
+			String uploadFileName1 = String.format("%d_%s", time, orgfileName1);
+			File f1 = new File(fileUrl + uploadFileName1);
+			try {
+				file1.transferTo(f1);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 파일이름저장
+			traDto.setC_image(uploadFileName1);
+
+			if (file2.getSize() != 0) {
+				String uploadFileName2 = String.format("%d_%s", time, orgfileName2);
+				File f2 = new File(fileUrl + uploadFileName2);
+				try {
+					file2.transferTo(f2);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				traDto.setC_logo(uploadFileName2);
+			}
+		} else {
+			// 기존 파일이름을 그대로 저장시키면 됨.
+		}
+
+		int modifyCheck = infoMapper.updateTravelModify(traDto);
+
+		map.put("modifyCheck", modifyCheck);
+
+		return map;
+	}
+
+	@Override
+	public void TravelDelete(String infoId) {
+
+		infoMapper.deleteTravelDelete(infoId);
+
+	}
+
+	@Override
 	public Map<String, Object> QuestionList(String listPage, String search) {
-		
+
 		q_list = new ArrayList<questionBoardDto>();
+		System.out.println("listPage : " + listPage);
 
 		int page = 1; // 첫페이지 초기화
-		int limit = 15; // 한 페이지에 나오는 게시글 수 : 15
+		int limit = 10; // 한 페이지에 나오는 게시글 수 : 15
 
 		// page데이터가 있으면 데이터 값 적용
 		if (listPage != null && listPage != "") {
 			page = Integer.parseInt(listPage);
 		}
+		System.out.println("page : " + page);
 
 		int startrow = (page - 1) * limit + 1; // 시작 게시글번호 1,11,21...
 		int endrow = startrow + limit - 1; // 마지막 게시글번호 10,20,30...
 
 		// 리스트 가져오기
 
-		if( search==null || search.equals("")) {
+		if (search == null || search.equals("")) {
 			q_list = infoMapper.selectQuestionListAll(startrow, endrow);
-		}else {
-			q_list = infoMapper.selectQuestionListSearch(startrow, endrow,search);
+		} else {
+			q_list = infoMapper.selectQuestionListSearch(startrow, endrow, search);
 		}
 
-		map = pageNumber.QuestionPageNumber(page, limit, search); 
+		map = pageNumber.QuestionPageNumber(page, limit, search);
 
 		map.put("q_list", q_list);
 
 		return map;
+
+	}
+	
+	@Override
+	public Map<String, Object> QuestionContent_view(String bid, String page, String search) {
+
+		//컨텐츠뷰 클릭시 조회수 증가
+		infoMapper.updateQuestionUpHit(bid);
 		
+		queDto = infoMapper.selectQuestionContentView(bid);
+
+		map.put("queDto", queDto);
+		map.put("page", page);
+		map.put("search", search);
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> QuestionWrite_view(String userid) {
+		map = new HashMap<String, Object>();
+		MemberDto memberDto = infoMapper.selectWriteView(userid);
+
+		map.put("memberDto", memberDto);
+		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> QuestionWrite(questionBoardDto queDto, MultipartFile file) {
+
+		// 파일 저장 위치
+		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
+		// 원본파일이름
+		String orgfileName = file.getOriginalFilename();
+		System.out.println("impl : " + orgfileName);
+		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			// 신규파일이름 ( 32자리이름생성.확장자명 ),(이름에 시간추가)
+			String uploadFileName = String.format("%d_%s", time, orgfileName);
+			File f = new File(fileUrl + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 파일이름저장
+			queDto.setFileName(uploadFileName);
+		} else {
+			queDto.setFileName("");
+		}
+
+		int writeCheck = infoMapper.insertQuestionWrite(queDto);
+
+		map.put("writeCheck", writeCheck);
+
+		return map;
+	}
+
+
+	@Override
+	public Map<String, Object> QuestionModifyView(String bid, String page, String search) {
+
+		queDto = infoMapper.selectQuestionModifyView(bid);
+
+		map.put("queDto", queDto);
+		map.put("page", page);
+		map.put("search", search);
+		
+		System.out.println("bid : "+queDto.getBid());
+
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> QuestionModify(questionBoardDto queDto, MultipartFile file) {
+
+		// 파일 저장 위치
+		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
+		// 원본파일이름
+		String orgfileName = file.getOriginalFilename();
+		System.out.println("impl : " + orgfileName);
+		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			// 신규파일이름 ( 32자리이름생성.확장자명 ),(이름에 시간추가)
+			String uploadFileName = String.format("%d_%s", time, orgfileName);
+			File f = new File(fileUrl + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// 파일이름저장
+			queDto.setFileName(uploadFileName);
+		} else {
+			queDto.setFileName("");
+		}
+
+		int modifyCheck = infoMapper.updateQuestionModify(queDto);
+		map.put("modifyCheck", modifyCheck);
+
+		return map;
+	}
+
+	@Override
+	public void QuestionDelete(String bid) {
+		
+		infoMapper.deleteQuestionDelete(bid);
+		
+	}
+
+	@Override
+	public Map<String, Object> QuestionReply(questionBoardDto queDto, String page, String search) {
+		
+		int replyCheck = infoMapper.insertQuestionReply(queDto);
+		map.put("replyCheck", replyCheck);
+		
+		return map;
 	}
 
 }

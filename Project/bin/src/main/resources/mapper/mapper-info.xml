@@ -242,28 +242,6 @@
 	    ]]>
 	  </insert>
 	  
-	  <!-- 수정하기 위해 데이터 가져오기(modify_view)  -->
-	  	<select id="selectTravelModifyView" resultType="com.site.dto.TravelcompanyInfoDto">
-		  	<![CDATA[
-		  		select * from TravelcompanyInfo where infoId=#{infoId}
-		  	]]>
-	  	</select>
-	  	
-	  	<!-- 허니문 게시글 수정하기 -->
-	  	<update id="updateTravelModify">
-		  	<![CDATA[ 
-			  	update TravelcompanyInfo set content=#{content},c_price=#{c_price},c_image=#{c_image},
-			  	c_logo=#{c_logo} where infoId=#{infoId}
-		    ]]>
-	  	</update>
-	  	
-	  	 <!-- 허니문 게시글 삭제하기 -->
-		  <delete id="deleteTravelDelete">
-		  	<![CDATA[
-		  		delete TravelcompanyInfo where infoId=#{infoId}
-		  	]]>
-		  </delete>
-	  
 	  
 	  <!-- [ 웨딩홀/허니문 문의 게시판 ] -->
 	  
@@ -282,7 +260,6 @@
 			  	select * from
 				(select rownum rnum,a.* from
 				(select * from question_board where bname like '%'||#{search}||'%' or btitle like '%'||#{search}||'%'
-				or bcategory like '%'||#{search}||'%'
 				order by bGroup desc,bStep asc) a)
 				where rnum>=#{startrow} and rnum<=#{endrow}
 		    ]]>   
@@ -296,60 +273,9 @@
 		  
 		  <select id="QuestionListCountSearch" resultType="int">
 		  	<![CDATA[
-	  			select count(*) from question_board where bname like '%'||#{search}||'%' or btitle like '%'||#{search}||'%' 
-	  			or bcategory like '%'||#{search}||'%'
+	  			select count(*) from question_board where bname like '%'||#{search}||'%' or btitle like '%'||#{search}||'%'
 	  		]]> 
 		  </select>
-		  
-		  <!-- 조회수 증가 -->
-		  <update id="updateQuestionUpHit">
-		  	update question_board set bhit=bhit+1 where bid=#{bid}
-		  </update>
-		  
-		   <!-- Content_view -->
-		  <select id="selectQuestionContentView" resultType="com.site.dto.questionBoardDto">
-		  	select * from question_board where bid=#{bid}
-		  </select>
-		  
-		  <!-- 문의글 등록(insert) -->
-		  <insert id="insertQuestionWrite">
-		  	<![CDATA[ 
-			  	insert into question_board values(
-				qboard_sequence.nextval,#{bname},#{bcategory},#{btitle},#{bcontent},
-				sysdate,0,qboard_sequence.currval,0,0,#{fileName})
-	    	]]>
-		  </insert>
-		 
-		  
-		  <!-- 수정하기 위해 데이터 가져오기(modify_view)  -->
-		  	<select id="selectQuestionModifyView" resultType="com.site.dto.questionBoardDto">
-			  	<![CDATA[
-			  		select * from question_board where bid=#{bid}
-			  	]]>
-		  	</select>
-		  <!-- 허니문 게시글 수정하기 -->
-	  	<update id="updateQuestionModify">
-		  	<![CDATA[ 
-			  	update question_board set bcategory=#{bcategory},btitle=#{btitle},bcontent=#{bcontent},
-			  	fileName=#{fileName} where bid=#{bid}
-		    ]]>
-	  	</update>
-		 
-		  <!-- 문의게시판 게시글 삭제하기 -->
-		  <delete id="deleteQuestionDelete">
-		  	<![CDATA[
-		  		delete question_board where bid=#{bid}
-		  	]]>
-		  </delete>
-		  
-		  <!-- 문의게시판 답글 등록(insert) -->
-		  <insert id="insertQuestionReply">
-		  	<![CDATA[ 
-			  	insert into question_board values(
-				qboard_sequence.nextval,#{bname},#{bcategory},#{btitle},#{bcontent},
-				sysdate,0,#{bgroup},#{bstep}+1,#{bindent},'')
-	    	]]>
-		  </insert>
 	  
 	  
 	  

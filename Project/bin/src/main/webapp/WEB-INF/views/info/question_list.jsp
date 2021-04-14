@@ -137,9 +137,9 @@ $(document).ready(function() {
 		}
 	});
 
-	/* $('a[id=screct_link]').click(function() {		
+	$('a[id=screct_link]').click(function() {		
 		alert("비밀글은 본인이 작성한 글만 확인이 가능합니다!");		
-	}); */
+	});
 });
 
 function go_page(n)
@@ -160,22 +160,27 @@ function go_page(n)
             <th scope="col">작성자</th>
             <th scope="col">작성일</th>
             <th scope="col">조회수</th>
-        </tr> 
+        </tr>
     </thead> 
 	<tbody>
      
      		<!-- 반복 시작 -->
-     		<c:forEach var="queDto" items="${map.q_list }">
 			<tr>
+     		<c:forEach var="queDto" items="${map.q_list }">
 				<td style="font-size:14px;">${queDto.bid }</td>        
-			    <td class="title"><span class="icon"><img src="../images/board_ic_secret.gif" alt="비밀글"></span><a  href="question_contentView?bid=${queDto.bid }&page=${map.page}&search=${search}" id="screct_link" class="view_article" style="cursor:pointer;">[ ${queDto.bcategory } ] ${queDto.btitle }&nbsp;<span style="color:#c60e0e;">&nbsp;( ${queDto.bstep } )</span></a>  
+			    <td class="title"><span class="icon"><img src="../images/board_ic_secret.gif" alt="비밀글"></span><a id="screct_link" class="view_article" style="cursor:pointer;">${queDto.btitle }&nbsp;<span style="color:#c60e0e;">&nbsp;${queDto.bstep }</span></a>  
                 </td>        
                 <td style="font-size:14px;">${queDto.bname }</td>
                 <td style="font-size:14px;">${queDto.bdate }</td>
                 <td style="font-size:14px;">${queDto.bhit }</td>
-			</tr>
 			</c:forEach>
+			</tr>
 			<!-- 반복 끝 -->
+			
+     
+	
+     
+		
               
     </tbody> 
 	</table>
@@ -225,15 +230,15 @@ function go_page(n)
         </div>
         
 <div id="board_write">
-        <a href="question_writeView"><input class="board_write_btn" type="button" value="문의하기" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
+        <a href="question_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
     </div>
 </div>
 
 <div id="board_bottom">
-	<form id="board_bottom_bx" name="board_bottom_bx" method="get" action="./question_list">
+	<form id="board_bottom_bx" name="board_bottom_bx" method="get" action="board_list.asp">
     <input type="hidden" name="pageNo">	
 		<ul>        	        
-            <li class="name_title"><input type="text" name="search" id="search" class="name_view_wrap" value="" style="padding-left:5px;"><input type="image" class="name_view_zoom" src="../images/index_zoom02.png"></li>
+            <li class="name_title"><input type="text" name="keyword" id="keyword" class="name_view_wrap" value="" style="padding-left:5px;"><input type="image" class="name_view_zoom" src="../images/index_zoom02.png"></li>
         </ul>    	
     </form>
 </div>

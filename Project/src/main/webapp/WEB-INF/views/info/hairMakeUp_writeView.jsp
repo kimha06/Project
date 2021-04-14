@@ -43,6 +43,18 @@
 
 </style>
 
+
+<c:choose>
+	<c:when test="${session_flag == null || session_flag eq 'fail'}">
+		<script type="text/javascript">
+			alert('로그인 후 이용 가능합니다.');
+			location.href="../member/login";
+		</script>
+	</c:when>
+</c:choose>
+
+
+
 <!-- 글쓰기 저장 ajax -->
 <script type="text/javascript">
 	function InfowriteCheck() {

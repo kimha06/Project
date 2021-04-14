@@ -22,6 +22,7 @@ import com.site.dto.HMcompanyInfoDto;
 import com.site.dto.MemberDto;
 import com.site.dto.StudiocompanyInfoDto;
 import com.site.dto.TravelcompanyInfoDto;
+import com.site.dto.questionBoardDto;
 import com.site.service.InfoService;
 
 @Controller
@@ -32,7 +33,6 @@ public class InfoController {
 	Map<String, Object> map;
 	
 	//리스트 
-	
 	@RequestMapping("/info/studio_list")
 	public String studio_list(@RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
 		
@@ -40,6 +40,7 @@ public class InfoController {
 		map = infoService.StudioList(page,search);
 		System.out.println("studio_list page : "+page);
 		System.out.println("com_name : "+map.get("com_name"));
+		
 		model.addAttribute("map", map);
 		
 		return "/info/studio_list";
@@ -79,7 +80,10 @@ public class InfoController {
 	@RequestMapping("/info/question_list")
 	public String question_list(@RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
 		
+		System.out.println("page : "+page);
+		
 		map = infoService.QuestionList(page,search);
+		
 		model.addAttribute("map", map);
 		
 		return "/info/question_list";
@@ -117,6 +121,15 @@ public class InfoController {
 		return "/info/hairMakeUp_contentView";
 	}
 	
+	@RequestMapping("/info/question_contentView")
+	public String question_contentView(@RequestParam String bid, @RequestParam @Nullable String page, @RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.QuestionContent_view(bid,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/question_contentView";
+	}
 	
 	
 	
@@ -176,6 +189,20 @@ public class InfoController {
 		return "/info/travel_writeView";
 	}
 	
+	@RequestMapping("/info/question_writeView")
+	public String question_writeView(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("session_flag") != null && session.getAttribute("session_flag").equals("success")) {
+			String userid = (String) session.getAttribute("session_userid"); 
+			Map<String, Object> userMap = infoService.QuestionWrite_view(userid);
+			
+			model.addAttribute("userMap", userMap);
+		}
+		
+		return "/info/question_writeView";
+	}
+	
 	
 	
 	//글쓰기
@@ -223,6 +250,17 @@ public class InfoController {
 		return "/info/travelWriteCheck";
 	}
 	
+	@RequestMapping("/info/question_write")
+	public String question_write(questionBoardDto queDto, @RequestPart MultipartFile file, Model model) {
+		
+		map = infoService.QuestionWrite(queDto,file);
+
+		model.addAttribute("map", map);
+		
+		return "/info/questionWriteCheck";
+	}
+	
+	
 	
 	//수정페이지
 	@RequestMapping("/info/studio_modifyView")
@@ -251,6 +289,56 @@ public class InfoController {
 		model.addAttribute("map", map);
 		
 		return "/info/hairMakeUp_modifyView";
+	}
+	
+	@RequestMapping("/info/travel_modifyView")
+	public String travel_modifyView(@RequestParam String infoId, @RequestParam @Nullable String page,
+			@RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.TravelModifyView(infoId,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/travel_modifyView";
+	}
+	
+	@RequestMapping("/info/question_modifyView")
+	public String question_modifyView(@RequestParam String bid, @RequestParam @Nullable String page,
+			@RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.QuestionModifyView(bid,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/question_modifyView";
+	}
+	
+	@RequestMapping("/info/question_replyView")
+	public String question_replyView(@RequestParam String bid, HttpServletRequest request, @RequestParam @Nullable String page, 
+			@RequestParam @Nullable String search, Model model) {
+		System.out.println("bid : "+bid);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("session_flag") != null && session.getAttribute("session_flag").equals("success")) {
+			String userid = (String) session.getAttribute("session_userid"); 
+			Map<String, Object> userMap = infoService.QuestionWrite_view(userid);
+			
+			model.addAttribute("userMap", userMap);
+		}
+		map = infoService.QuestionModifyView(bid,page,search);
+		model.addAttribute("map", map);
+		
+		return "/info/question_replyView";
+	}
+	
+	@RequestMapping("/info/question_reply")
+	public String question_reply(questionBoardDto queDto, @RequestParam @Nullable String page, 
+			@RequestParam @Nullable String search, Model model) {
+		
+		map = infoService.QuestionReply(queDto,page,search);
+		
+		model.addAttribute("map", map);
+		
+		return "/info/questionReplyCheck"; 
 	}
 	
 	
@@ -303,6 +391,41 @@ public class InfoController {
 		return "/info/hairMakeUpModifyCheck";
 	}
 	
+	@RequestMapping("/info/travel_modify")
+	public String travel_modify(TravelcompanyInfoDto traDto, @RequestPart MultipartFile file1, 
+			@RequestPart MultipartFile file2, Model model) throws Exception {
+		
+		System.out.println("traDto_modify controller InfoId : "+traDto.getInfoId());
+		
+		map = infoService.TravelModify(traDto,file1,file2);
+		/*
+		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
+		 * 한글깨짐 방지하기 위해 }
+		 */
+		model.addAttribute("map", map);
+		
+		return "/info/travelModifyCheck";
+	}
+	
+	@RequestMapping("/info/question_modify")
+	public String question_modify(questionBoardDto queDto, @RequestPart MultipartFile file, Model model) throws Exception {
+		
+		System.out.println("queDto_modify controller bid : "+queDto.getBid());
+		
+		map = infoService.QuestionModify(queDto,file);
+		/*
+		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
+		 * 한글깨짐 방지하기 위해 }
+		 */
+		model.addAttribute("map", map);
+		
+		return "/info/questionModifyCheck"; 
+	}
+	
+	
+	
+	
+	
 	//글삭제
 	@RequestMapping("/info/studio_delete")
 	public String studio_delete(@RequestParam String infoId, @RequestParam @Nullable String page,
@@ -334,5 +457,27 @@ public class InfoController {
 		
 		return "redirect:/info/hairMakeUp_list";
 	}
+	
+	@RequestMapping("/info/travel_delete")
+	public String travel_delete(@RequestParam String infoId,Model model) {
+		
+		System.out.println("삭제 infoId : "+infoId);
+		infoService.TravelDelete(infoId);
+		
+		model.addAttribute("infoId", infoId);
+		
+		return "redirect:/info/travel_list";
+	}
+	
+	@RequestMapping("/info/question_delete")
+	public String question_delete(@RequestParam String bid) {
+		
+		System.out.println("삭제 bid : "+bid);
+		infoService.QuestionDelete(bid);
+		
+		return "redirect:/info/question_list";
+	}
+	
+	
 	
 }

@@ -9,6 +9,7 @@ import com.site.dto.DresscompanyInfoDto;
 import com.site.dto.HMcompanyInfoDto;
 import com.site.dto.StudiocompanyInfoDto;
 import com.site.dto.TravelcompanyInfoDto;
+import com.site.dto.questionBoardDto;
 
 public interface InfoService {
 
@@ -60,7 +61,27 @@ public interface InfoService {
 
 	Map<String, Object> TravelWrite(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2);
 
-	Map<String, Object> QuestionList(String page, String search);                
-  
+	Map<String, Object> QuestionList(String page, String search);
+
+	Map<String, Object> TravelModifyView(String infoId, String page, String search);
+
+	Map<String, Object> TravelModify(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2);
+
+	void TravelDelete(String infoId);
+
+	Map<String, Object> QuestionWrite_view(String userid);
+
+	Map<String, Object> QuestionWrite(questionBoardDto queDto, MultipartFile file);
+
+	Map<String, Object> QuestionContent_view(String bid, String page, String search);
+
+	Map<String, Object> QuestionModifyView(String bid, String page, String search);
+
+	Map<String, Object> QuestionModify(questionBoardDto queDto, MultipartFile file);
+
+	void QuestionDelete(String bid);
+
+	Map<String, Object> QuestionReply(questionBoardDto queDto, String page, String search);                         
+   
 
 }

@@ -143,11 +143,14 @@ public class PageNumber {
 		}else {
 			listCount = infoMapper.QuestionListCountSearch(search);
 		}
+		System.out.println("listCount : "+listCount);
 
 		// 최대 페이지 수
 		int maxPage = (int) ((double) listCount / limit + 0.95); // 34/10+0.95=4.35(int)4.35-> 4
 		// 첫 페이지 번호 10페이지/10+0.9=1.9->1-1=0*10+1= 1
 		int startPage = ((int) ((double) page / limit + 0.9) - 1) * limit + 1;
+		System.out.println("page : "+page);
+		System.out.println("limit : "+limit);
 		System.out.println("startPage : "+startPage);
 		// 마지막 페이지 번호
 		int endPage = maxPage;

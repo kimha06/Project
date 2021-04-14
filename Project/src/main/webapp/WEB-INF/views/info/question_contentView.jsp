@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
@@ -30,29 +29,35 @@
 <link rel="stylesheet" href="../fonts/NanumBarunGothic.css?ver=1" type="text/css">
 <link rel="stylesheet" type="text/css" href="/css/jquery-ui-1.10.4.custom.css">
 
-
 <script type="text/javascript" src="/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/document.on.js"></script>
 <script type="text/javascript" src="/js/prog.js"></script>
 <script language="javascript" src="/js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!--접속유입통계-->	
 
-<!--접속유입통계-->
-<script language="javascript">
-
-</script>
-
-</head>
-<body>
+<link type="text/css" rel="stylesheet" href="chrome-extension://eobejphpabbjeehffmbiecckpkggpbai/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://eobejphpabbjeehffmbiecckpkggpbai/js/content-script/page_context.js"></script></head>
+<body naver_screen_capture_injected="true">
 <div class="wrap">
-	<jsp:include page="../include/header.jsp">
+	<!-- 헤더 너을거임  -->
+
+<jsp:include page="../include/header.jsp">
     <jsp:param name="category" value="product1" />
 </jsp:include>
 <div class="m_bx_wrap">
      
 	<script type="text/javascript" src="/js/jssor.slider.min.js"></script>
 	<script type="text/javascript">
+	
+	function deleteCheck() {
+		alert("삭제버튼 클릭");
+		if (confirm("삭제하시겠습니까?") == true) {
+			location.href = "./question_delete?page=${map.page }&bid=${map.queDto.bid}&search=${map.search }";
+		} else {
+			return false;
+		}
+	}
+	
+	
         jssor_1_slider_init = function() {            
             var jssor_1_SlideshowTransitions = [
               {$Duration:1200,$Opacity:2}
@@ -98,12 +103,12 @@
 		
 		no-repeat;overflow:hidden;cursor:pointer}.jssorb05 div{background-position:-7px -7px}.jssorb05 div:hover,.jssorb05 .av:hover{background-position:-37px -7px}.jssorb05 .av{background-position:-67px -7px}.jssorb05 .dn,.jssorb05 .dn:hover{background-position:-97px -7px}.jssora22l,.jssora22r{display:block;position:absolute;width:40px;height:58px;cursor:pointer;background:url('/images/a22.png') center center no-repeat;overflow:hidden}.jssora22l{background-position:-10px -31px}.jssora22r{background-position:-70px -31px}.jssora22l:hover{background-position:-130px -31px}.jssora22r:hover{background-position:-190px -31px}.jssora22l.jssora22ldn{background-position:-250px -31px}.jssora22r.jssora22rdn{background-position:-310px -31px}
 	</style>
-	<div id="jssor_1" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 1287px; height: 220.077px; overflow: hidden; visibility: visible;" jssor-slider="true">			
+	<div id="jssor_1" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 1280px; height: 218.88px; overflow: hidden; visibility: visible;" jssor-slider="true">			
 		
 				
 		
 		
-	<div style="position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; transform-origin: 0px 0px; transform: scale(0.6435);"><div class="" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: visible; visibility: visible; display: block;"><div class="imgs" data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: hidden; z-index: 0;"><div style="position: absolute; z-index: 0; pointer-events: none;"></div></div><div class="imgs" data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: hidden; z-index: 0;"><div style="top: 0px; left: 0px; width: 2000px; height: 342px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0; display: none;"></div>
+	<div style="position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; transform-origin: 0px 0px; transform: scale(0.64);"><div class="" style="position: relative; margin: 0px auto; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: visible; visibility: visible; display: block;"><div class="imgs" data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: hidden; z-index: 0;"><div style="position: absolute; z-index: 0; pointer-events: none;"></div></div><div class="imgs" data-u="slides" style="cursor: default; position: absolute; top: 0px; left: 0px; width: 2000px; height: 342px; overflow: hidden; z-index: 0;"><div style="top: 0px; left: 0px; width: 2000px; height: 342px; position: absolute; background-color: rgb(0, 0, 0); opacity: 0; display: none;"></div>
 		<div class="sub_link_menu_wrap" style="top: 0px; left: 0px; width: 2000px; height: 342px; position: absolute; overflow: hidden;"><img class="bg_img" data-u="image" src="http://vgood.co.kr/admin/contentsImg/homepage/201803/story.jpg" border="0" style="top: 0px; left: 0px; width: 2000px; height: 342px; position: absolute;"><div style="top: 0px; left: 0px; width: 2000px; height: 342px; z-index: 1000; display: none;"></div></div>			
 		</div><div data-u="navigator" class="jssorb05" style="bottom: 16px; right: 6px; width: 16px; height: 16px; left: 992px;" data-autocenter="1">			
 			
@@ -115,140 +120,118 @@
 <div class="sub_link_box">
 	<div class="sub_link_menu">
 		<span id="sub_Color_f"><a href="/community/notice_list.asp">공지사항</a></span>
-        <span id="sub_Color_f" class="sub_under_bar"><a href="/community/board_list.asp">문의게시판</a></span>
-		<span id="sub_Color_f"><a href="/community/after_list.asp">웨딩후기</a></span>
+		<span id="sub_Color_f" class="sub_under_bar"><a href="/info/question_list">문의게시판</a></span>
+        <span id="sub_Color_f"><a href="/community/board_list.asp">웨딩후기</a></span>
     </div>
 </div>
 <div id="contain02">
 	<div id="contain02_text">
 		<span class="title_name">문의게시판</span>
-        <span class="title_detail">웨딩홀/허니문 문의게시판입니다.</span>
+        <span class="title_detail">결혼 준비의 새로운 기준 베리굿웨딩과 함께 하세요!</span>
     </div>
 </div>
 
 <script language="javascript">
-$(document).ready(function() {	
+$(document).ready(function() {
 	$('#regist_btn').click(function() {
 		if ('')
 		{
-			top.location.href="board_flag.asp";
+			top.location.href="after_flag.asp";
 		}else {
-			top.location.href="/membership/log_in.asp?url=/community/board_flag.asp";
+			top.location.href="/membership/log_in.asp?url=/community/after_flag.asp";
 		}
 	});
 
-	/* $('a[id=screct_link]').click(function() {		
-		alert("비밀글은 본인이 작성한 글만 확인이 가능합니다!");		
-	}); */
+	$('#edit_btn').click(function() {
+		data = $(this).attr("data");
+		data2 = $(this).attr("data2");
+		data3 = $(this).attr("data3");
+		data4 = $(this).attr("data4");
+		if ('')
+		{
+			if ('' != data4)
+			{
+				alert("본인글만 수정하실 수 있습니다!");				
+			}else {
+				top.location.href="after_flag.asp?idx="+data+"&mode=edit&"+data3;
+			}
+		}else {
+			top.location.href="/membership/log_in.asp?url=/community/after_view.asp?idx="+data+"&"+data2;
+		}
+	});
+
+/* 	$('#del_btn').click(function() {
+		data = $(this).attr("data");
+		data2 = $(this).attr("data2");
+		data3 = $(this).attr("data3");
+		data4 = $(this).attr("data4");
+		if ('')
+		{
+			if ('' != data4)
+			{
+				alert("본인글만 삭제하실 수 있습니다!");				
+			}else {
+				if (confirm("삭제하시겠습니까?"))
+				{
+					top.location.href="after_delete_access.asp?idx="+data+"&"+data3;
+				}
+			}
+		}else {
+			top.location.href="/membership/log_in.asp?url=/community/after_view.asp?idx="+data+"&"+data2;
+		}
+	});	 */
 });
-
-function go_page(n)
-{
-	document.board_bottom_bx.pageNo.value = n;
-	document.board_bottom_bx.submit();
-}    
 </script>
-<div class="cm_board_normal">
-	<table summary="게시판목록">
-	<colgroup>
-		<col width="8%"><col width="*"><col width="12%"><col width="12%"><col width="7%">
-	</colgroup>
-    <thead>
-		<tr>
-			<th scope="col">번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일</th>
-            <th scope="col">조회수</th>
-        </tr> 
-    </thead> 
-	<tbody>
-     
-     		<!-- 반복 시작 -->
-     		<c:forEach var="queDto" items="${map.q_list }">
-			<tr>
-				<td style="font-size:14px;">${queDto.bid }</td>        
-			    <td class="title"><span class="icon"><img src="../images/board_ic_secret.gif" alt="비밀글"></span><a  href="question_contentView?bid=${queDto.bid }&page=${map.page}&search=${search}" id="screct_link" class="view_article" style="cursor:pointer;">[ ${queDto.bcategory } ] ${queDto.btitle }&nbsp;<span style="color:#c60e0e;">&nbsp;( ${queDto.bstep } )</span></a>  
-                </td>        
-                <td style="font-size:14px;">${queDto.bname }</td>
-                <td style="font-size:14px;">${queDto.bdate }</td>
-                <td style="font-size:14px;">${queDto.bhit }</td>
-			</tr>
-			</c:forEach>
-			<!-- 반복 끝 -->
-              
-    </tbody> 
-	</table>
-</div>
-<!-- 페이지번호 -->
-<div id="board_link_wrap">
-		<div id="board_link_num">
-			<c:choose>
-				<c:when test="${map.page <= 1 }">
-				</c:when>
-				<c:otherwise>
-            		<a href="question_list?search=${map.search }&page=1" title="1페이지">&lt;&lt;</a>
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${map.page <= 1 }">
-				</c:when>
-				<c:otherwise>
-            		<a href="question_list?search=${map.search }&page=${map.page-1}" title="이전">&lt;</a>
-				</c:otherwise>
-			</c:choose>
-			<!-- 페이지 번호 반복 -->
-			<c:forEach var="nowPage" begin="${map.startPage}" end="${map.endPage }">
-				<c:choose>
-			          <c:when test="${map.page==nowPage}">
-						<span style="font-size:16px;">${nowPage }</span>
-			          </c:when>
-			          <c:otherwise>
-			             <a href="question_list?search=${map.search }&page=${nowPage}" style="font-size:16px;">${nowPage }</a>
-			          </c:otherwise>
-			        </c:choose>
-			</c:forEach>
-			<c:choose>
-				<c:when test="${map.page >= map.maxPage }">
-				</c:when>
-				<c:otherwise>
-					<a href="question_list?search=${map.search }&page=${map.page+1}" title="다음" class="num_right">&gt;</a>
-				</c:otherwise>
-			</c:choose>
-			<c:choose>
-				<c:when test="${map.page >= map.maxPage }">
-				</c:when>
-				<c:otherwise>
-					<a href="question_list?search=${map.search }&page=${map.maxPage}" title="끝페이지" class="num_right">&gt;&gt;</a>
-				</c:otherwise>
-			</c:choose>
-        </div>
-        
-<div id="board_write">
-        <a href="question_writeView"><input class="board_write_btn" type="button" value="문의하기" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px;"></a>
+<div id="community_after_detail_wrap">
+	<div id="after_detail_title">
+		<span class="after_detail_title_txt">[ ${map.queDto.bcategory} ] ${map.queDto.btitle}</span>
     </div>
+    <div id="after_detail_date">
+		<span id="after_detail_date_day" style="font-size:13px;color:#000000;">• 작성자</span>
+        <span class="after_detail_date_day" style="font-size:13px;">${map.queDto.bname }</span>
+        <span id="after_detail_date_day" style="font-size:13px;color:#000000;">• 작성일</span>
+        <span class="after_detail_date_day" style="font-size:13px;">${map.queDto.bdate }</span>
+        <span id="after_detail_date_day" style="font-size:13px;color:#000000;">• 조회수</span>
+        <span class="after_detail_date_day" style="font-size:13px;">${map.queDto.bhit }</span>
+    </div>
+    
+    <div id="after_detail_img" style="font-size:14px;">${map.queDto.bcontent }</div>
+	
+    <div id="after_detail_lotation">
+		<div id="after_lotation_left">
+			<div class="after_lotation_left01"><a><img src="../images/up.jpg" alt="up">이전글</a></div>
+            <div class="after_lotation_left02">
+				
+					<a href="after_view.asp?idx=18895&amp;pageNo=1&amp;search=&amp;keyword=">[웨딩화보] 모니카블랑쉬</a> 
+				
+			</div>
+        </div>
+        <div id="after_lotation_right">
+			<div class="after_lotation_right01"><a><img src="../images/down.jpg" alt="down">다음글</a></div>
+            <div class="after_lotation_right02">
+				<a>다음글이 없습니다.</a>
+				</div>
+            </div>
+        </div>     
+		<div id="after_return">
+			<span class="after_return_txt_list"><a href="./question_list?page=${map.page }&search=${map.search}">목록으로</a></span>
+			<span class="after_return_txt_edit"><a href="./question_modifyView?bid=${map.queDto.bid }&page=${map.page }&search=${map.search}" id="edit_btn" style="cursor:pointer;" data="18896" data2="pageNo=1&amp;search=&amp;keyword=" data3="pageNo=1&amp;search=&amp;keyword=" data4="${map.queDto.bname }">수정</a></span>
+			<span class="after_return_txt_del"><a id="del_btn" style="cursor:pointer;" data="18896" data2="pageNo=1&amp;search=&amp;keyword=" data3="pageNo=1&amp;search=&amp;keyword=" data4="${map.queDto.bname }" onclick="deleteCheck()">삭제</a></span>
+			<span class="after_return_txt_write"><a href="./question_replyView?bid=${map.queDto.bid }&page=${map.page }&search=${search}" id="regist_btn" style="cursor:pointer;">답변달기</a></span>
+		</div>
+		<div style="height:70px;">
+			             		
+		</div>
+	</div>
 </div>
 
-<div id="board_bottom">
-	<form id="board_bottom_bx" name="board_bottom_bx" method="get" action="./question_list">
-    <input type="hidden" name="pageNo">	
-		<ul>        	        
-            <li class="name_title"><input type="text" name="search" id="search" class="name_view_wrap" value="" style="padding-left:5px;"><input type="image" class="name_view_zoom" src="../images/index_zoom02.png"></li>
-        </ul>    	
-    </form>
-</div>
-
-
-<script language="JavaScript" type="text/JavaScript">
-
-</script>
-
-<script type="text/javascript">
-
-</script>
+<div id="footer_wrap2">
 <!--푸터 넣을거임  -->
 
 <jsp:include page="../include/footer.jsp">
     <jsp:param name="category" value="product2" />
 </jsp:include>
-    </div></body></html>
+</div><!--#footer_wrap2-->
+
+
+</div></body><audio src="" id="naver_dic_audio_controller" controls="controls" style="display: none;"></audio></html>

@@ -4,6 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <% pageContext.setAttribute("br","<br>"); %>
 <% pageContext.setAttribute("cn","\n"); %>
+
+
 <html><head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -43,8 +45,24 @@
 
 </style>
 
+
+<c:choose>
+	<c:when test="${session_flag == null || session_flag eq 'fail'}">
+		<script type="text/javascript">
+			alert('로그인 후 이용 가능합니다.');
+			location.href="../member/login";
+		</script>
+	</c:when>
+</c:choose>
+
+
+
 <!-- 글쓰기 저장 ajax -->
 <script type="text/javascript">
+
+
+
+
 
 	function InfowriteCheck() {
 		
@@ -354,6 +372,8 @@ $(document).ready(function() {
    <form name="online_write_box" id="online_write_box" method="post" action="./travel_write" enctype="multipart/form-data">
    <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
    <input type="hidden" name="com_tel" id="com_tel" value="${userMap.memberDto.com_tel }">
+   <input type="hidden" name="fileName1" id="fileName1" value="${file1 }">
+   <input type="hidden" name="fileName2" id="fileName2" value="${file2 }">
    
    <div class="online_Awrite_form">
       <ul>

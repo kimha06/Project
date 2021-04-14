@@ -81,7 +81,7 @@ public interface InfoMapper {
 	//헤어메이크업 상품 삭제
 	void deleteHmDelete(String infoId);
 	
-	//허니문 리스트가져오기
+	//허니문 리스트가져오기(허니문은 검색없음)
 	List<TravelcompanyInfoDto> selectTravelListAll(int startrow, int endrow);
 	
 	//허니문 리스트 개수 가져오기
@@ -90,13 +90,41 @@ public interface InfoMapper {
 	//허니문 상품 게시글 등록(write)
 	int insertTravelWrite(TravelcompanyInfoDto traDto);
 	
+	//허니문 상품 게시글 수정(modify)
+	TravelcompanyInfoDto selectTravelModifyView(String infoId); 
+	int updateTravelModify(TravelcompanyInfoDto traDto); 
+	
+	//허니문 상품 삭제
+	void deleteTravelDelete(String infoId); 
+	
 	//웨딩홀/허니문 문의게시판 리스트 가져오기
 	List<questionBoardDto> selectQuestionListAll(int startrow, int endrow);
 	List<questionBoardDto> selectQuestionListSearch(int startrow, int endrow, String search);
 	
-	//웨딩홀/허니문 문의게시판 리스트 개수 가져오기(얘네는 pageNumber에서 들어옴)
+	
+	//[ 웨딩홀/허니문 ] 문의게시판 리스트 개수 가져오기(얘네는 pageNumber에서 들어옴)
 	int QuestionListCount();
-	int QuestionListCountSearch(String search);     
+	int QuestionListCountSearch(String search);
+	
+	//문의게시판 컨텐츠보기 (컨텐츠 클릭할 경우 조회수 증가)
+	void updateQuestionUpHit(String bid);   
+	questionBoardDto selectQuestionContentView(String bid);  
+	
+	//문의게시판 글쓰기(write)
+	int insertQuestionWrite(questionBoardDto queDto);
+	
+	//문의게시판 글수정(modify)
+	questionBoardDto selectQuestionModifyView(String bid);
+	int updateQuestionModify(questionBoardDto queDto);
+	
+	//문의게시판 글삭제
+	void deleteQuestionDelete(String bid);
+	
+	//문의게시판 답글달기
+	int insertQuestionReply(questionBoardDto queDto); 
+	
+	
+	
 	
 	
 	
