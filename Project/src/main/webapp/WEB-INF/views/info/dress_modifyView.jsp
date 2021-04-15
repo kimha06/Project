@@ -81,11 +81,11 @@ function InfoModifyCheck() {
 		return false;
 	}
 	
-	var fileCheck = document.getElementById("file").value;
+	/* var fileCheck = document.getElementById("file").value;
     if(!fileCheck){
         alert("파일을 첨부해 주세요");
         return false;
-    }
+    } */
 	
 	if($('#content').val()=="") {
 		alert('업체내용을 작성해주세요.');
@@ -362,6 +362,7 @@ $(document).ready(function() {
 <div id="online_write_wrap">    
    <form name="online_modify_box" id="online_modify_box" method="post" action="./dress_modify?infoId=${map.dreDto.infoId }" enctype="multipart/form-data">
    <input type="hidden" name="userid" id="userid" value="${map.dreDto.userid }">
+    <input type="hidden" name="c_fileName" id="c_fileName" value="${map.dreDto.c_fileName }">
    
    <div class="online_Awrite_form">
       <ul>

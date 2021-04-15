@@ -113,11 +113,9 @@ public class InfoServiceImpl implements InfoService {
 		}
 
 		System.out.println("파일 : " + stuDto.getC_fileName());
-
 		
 		// mapper전달
 		infoMapper.insertStudioWrite(stuDto);
-
 		return map;
 	}
 
@@ -137,11 +135,11 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public Map<String, Object> StudioModify(StudiocompanyInfoDto stuDto, @RequestPart MultipartFile file) {
 
-		System.out.println("modify impl");
+		System.out.println("파일 이름 impl : "+stuDto.getC_fileName());
 		// 원본파일이름
-		String orgfileName = file.getOriginalFilename();
-		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			String orgfileName = file.getOriginalFilename();
+			System.out.println("impl : " + orgfileName);
 			// 파일 저장 위치
 			String fileUrl = "C:/Users/User/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																										// 파일이
@@ -163,8 +161,11 @@ public class InfoServiceImpl implements InfoService {
 		}
 
 		int ModifyCheck = infoMapper.updateStudioModify(stuDto);
+		System.out.println("스튜디오 infoId : "+stuDto.getInfoId());
+		System.out.println("스튜디오 ModifyCheck : "+ModifyCheck);
 
 		map.put("ModifyCheck", ModifyCheck);
+		
 		return map;
 	}
 
@@ -431,13 +432,14 @@ public class InfoServiceImpl implements InfoService {
 
 	@Override
 	public Map<String, Object> HmModify(HMcompanyInfoDto hmDto, MultipartFile file) {
+		
+		System.out.println("impl infoId : "+hmDto.getInfoId());
 		// 원본파일이름
-		String orgfileName = file.getOriginalFilename();
-		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			String orgfileName = file.getOriginalFilename();
+			System.out.println("impl : " + orgfileName);
 			// 파일 저장 위치
 			String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
-																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			// 이름에 시간추가
@@ -453,6 +455,7 @@ public class InfoServiceImpl implements InfoService {
 			hmDto.setC_fileName(uploadFileName);
 		} else {
 			// 기존 파일이름을 그대로 저장시키면 됨.
+			
 		}
 
 		int ModifyCheck = infoMapper.updateHmModify(hmDto);
@@ -479,6 +482,8 @@ public class InfoServiceImpl implements InfoService {
 
 		list4 = new ArrayList<TravelcompanyInfoDto>();
 
+		//이 글을 올린 사람의 아이디와 현재 세션에 저장된 아이디를 비교
+		
 		int page = 1; // 첫페이지 초기화
 		int limit = 9; // 한 페이지에 나오는 게시글 수 : 9
 
@@ -505,9 +510,12 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> TravelWrite_view(String userid) {
 
 		map = new HashMap<String, Object>();
+		
 		MemberDto memberDto = infoMapper.selectWriteView(userid);
+		System.out.println("작성자 이름 : "+memberDto.getCom_name());
 
 		map.put("memberDto", memberDto);
+		
 		return map;
 	}
 
@@ -567,6 +575,7 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> TravelModifyView(String infoId, String page, String search) {
 
 		traDto = infoMapper.selectTravelModifyView(infoId);
+		System.out.println("업체명 : "+traDto.getCom_name());
 		System.out.println("대표이미지 : " + traDto.getC_image());
 
 		map.put("traDto", traDto);

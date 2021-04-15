@@ -281,15 +281,18 @@
 									<tbody>
 										<tr>
 											<c:choose>
-												<c:when test="${session_userid == map.traDto.userid }">
+												<c:when test="${session_userid == traDto.userid }">
 													<a href="travel_modifyView?infoId=${traDto.infoId }">
 														<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="수정하기" style="cursor: pointer; font-family: NanumBarunGothic;"></span></a>
 														<span class="btn_input"><input type="button" class="online_lg_color" id="regist_btn" value="삭제하기" style="cursor: pointer; font-family: NanumBarunGothic;" onclick="deleteCheck('${traDto.infoId}')"></span>
-												</c:when>											</c:choose>
+												</c:when>
+												<c:otherwise>									
 													<td align="center"
 														style="width: 120px; height: 34px; cursor: pointer; border: 1px solid #d9d8d8; line-height: 34px; font-size: 17px; background-color: #fe4253; color: #ffffff; text-align: center;"
 														gubun="혼수상담" title="${traDto.com_name }" category="혼수상담" qidx="1000"
 														id="btn_layer_consult" onclick="location.href='./question_list'">문의하기</td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</tbody>
 								</table>
@@ -338,7 +341,13 @@
 
 	<div id="board_link_wrap">
 		<div id="board_write">
-	    	<a href="travel_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px; bottom: 20px;" ></a>
+			<c:choose>
+				<c:when test="${session_businessTy eq 'company' || session_userid eq 'admin'}">
+			    	<a href="travel_writeView"><input class="board_write_btn" type="button" value="상품등록" id="regist_btn" style="cursor:pointer;font-family: NanumBarunGothic;font-size:15px; bottom: 20px;" ></a>
+				</c:when>
+				<c:otherwise>
+				</c:otherwise>
+			</c:choose>
 	    </div>
     </div>
 

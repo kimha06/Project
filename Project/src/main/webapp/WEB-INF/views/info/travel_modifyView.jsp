@@ -68,7 +68,7 @@
 		}
 		
 		
-		var fileCheck = document.getElementById("file1").value;
+		/* var fileCheck = document.getElementById("file1").value;
 	    if(!fileCheck){
 	        alert("대표이미지를 첨부해 주세요");
 	        return false;
@@ -78,7 +78,7 @@
 	    if(!fileCheck2){
 	        alert("로고이미지를 첨부해 주세요");
 	        return false;
-	    }
+	    } */
 		
 		if($('#content').val()=="") {
 			alert('업체내용을 작성해주세요.');
@@ -359,13 +359,15 @@ $(document).ready(function() {
    <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
    <input type="hidden" name="com_tel" id="com_tel" value="${userMap.memberDto.com_tel }">
    <input type="hidden" name="infoId" id="infoId" value="${map.traDto.infoId }">
+   <input type="hidden" name="c_image" id="c_image" value="${map.traDto.c_image }">
+   <input type="hidden" name="c_logo" id="c_logo" value="${map.traDto.c_logo }">
    
    <div class="online_Awrite_form">
       <ul>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;업체명</span>
                 <div class="value">
-                <input type="input" name="com_name" id="com_name" class="online_write_input02" value="${userMap.memberDto.com_name }" style="padding-left:5px;color:#000000;">
+                <input type="input" name="com_name" id="com_name" class="online_write_input02" value="${map.traDto.com_name }" style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li">

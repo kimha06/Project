@@ -232,7 +232,7 @@ public class InfoController {
 	}
 	
 	@RequestMapping("/info/hairMakeUp_write")
-	public String hairMakeUp_write(HMcompanyInfoDto hmDto,@RequestParam String userid, @RequestPart MultipartFile file, Model model) {
+	public String hairMakeUp_write(HMcompanyInfoDto hmDto, @RequestParam String userid, @RequestPart MultipartFile file, Model model) {
 		
 		System.out.println("hmDto userid : "+hmDto.getUserid());
 		System.out.println("hmDto 전화번호 : "+hmDto.getCom_tel());
@@ -349,28 +349,30 @@ public class InfoController {
 	@RequestMapping("/info/studio_modify")
 	public String studio_modify(StudiocompanyInfoDto stuDto, @RequestParam @Nullable String page,
 			@RequestPart MultipartFile file, @RequestParam @Nullable String search, Model model) throws Exception {
-		System.out.println("studio_modify controller InfoId : "+stuDto.getInfoId());
+		
 		map = infoService.StudioModify(stuDto,file);
 		/*
 		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
 		 * 한글깨짐 방지하기 위해 }
 		 */
+		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
-		return "redirect:/info/studioModifyCheck";
+		
+		return "/info/studioModifyCheck";
 	}
 	
 	@RequestMapping("/info/dress_modify")
 	public String dress_modify(DresscompanyInfoDto dreDto, @RequestParam @Nullable String page,
 			@RequestPart MultipartFile file, @RequestParam @Nullable String search, Model model) throws Exception {
 		
-		System.out.println("dreDto_modify controller InfoId : "+dreDto.getInfoId());
 		
 		map = infoService.DressModify(dreDto,file);
 		/*
 		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
 		 * 한글깨짐 방지하기 위해 }
 		 */
+		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
 		
@@ -381,13 +383,13 @@ public class InfoController {
 	public String hairMakeUp_modify(HMcompanyInfoDto hmDto, @RequestParam @Nullable String page,
 			@RequestPart MultipartFile file, @RequestParam @Nullable String search, Model model) throws Exception {
 		
-		System.out.println("hmDto_modify controller InfoId : "+hmDto.getInfoId());
-		
+		//System.out.println("controller infoId : "+hmDto.getInfoId());
 		map = infoService.HmModify(hmDto,file);
 		/*
 		 * if(search != null) { search = URLEncoder.encode(search,"utf-8"); //한글로 검색했을때
 		 * 한글깨짐 방지하기 위해 }
 		 */
+		model.addAttribute("map", map);
 		model.addAttribute("page", page);
 		model.addAttribute("search", search);
 		
@@ -398,7 +400,6 @@ public class InfoController {
 	public String travel_modify(TravelcompanyInfoDto traDto, @RequestPart MultipartFile file1, 
 			@RequestPart MultipartFile file2, Model model) throws Exception {
 		
-		System.out.println("traDto_modify controller InfoId : "+traDto.getInfoId());
 		
 		map = infoService.TravelModify(traDto,file1,file2);
 		/*
@@ -413,7 +414,6 @@ public class InfoController {
 	@RequestMapping("/info/question_modify")
 	public String question_modify(questionBoardDto queDto, @RequestPart MultipartFile file, Model model) throws Exception {
 		
-		System.out.println("queDto_modify controller bid : "+queDto.getBid());
 		
 		map = infoService.QuestionModify(queDto,file);
 		/*
