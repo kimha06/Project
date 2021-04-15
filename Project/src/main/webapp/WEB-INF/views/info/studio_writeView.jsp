@@ -83,9 +83,9 @@
 			return false;
 		}
 		
-		var str = $('#content').val();
+		/* var str = $('#content').val();
 	      str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
-	      $('#content').val(str);
+	      $('#content').val(str); */
 		
 		$.ajax({
 			url:"./studio_write",
@@ -371,7 +371,6 @@ $(document).ready(function() {
 </script>
 <div id="online_write_wrap">    
    <form name="online_write_box" id="online_write_box" method="post" action="" enctype="multipart/form-data">
-   <input type="hidden" name="fileName" id="fileName" value="file">
    <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
    <input type="hidden" name="com_tel" id="com_tel" value="${userMap.memberDto.com_tel }">
    

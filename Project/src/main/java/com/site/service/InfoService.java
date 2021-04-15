@@ -17,7 +17,7 @@ public interface InfoService {
 
 	Map<String, Object> StudioContent_view(String infoId, String page, String search);
 
-	Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto, MultipartHttpServletRequest mtfRequest);
+	Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto, MultipartFile file);
 
 	Map<String, Object> StudioModifyView(String infoId, String page, String search);
 

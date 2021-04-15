@@ -168,7 +168,16 @@ function go_page(n)
      		<c:forEach var="queDto" items="${map.q_list }">
 			<tr>
 				<td style="font-size:14px;">${queDto.bid }</td>        
-			    <td class="title"><span class="icon"><img src="../images/board_ic_secret.gif" alt="비밀글"></span><a  href="question_contentView?bid=${queDto.bid }&page=${map.page}&search=${search}" id="screct_link" class="view_article" style="cursor:pointer;">[ ${queDto.bcategory } ] ${queDto.btitle }&nbsp;<span style="color:#c60e0e;">&nbsp;( ${queDto.bstep } )</span></a>  
+			    <td class="title"><span class="icon">
+			    <c:forEach begin="1" end="${queDto.bindent }">
+      		<img src="../images/icon_reply.png">
+      	</c:forEach>
+			    <img src="../images/board_ic_secret.gif" alt="비밀글"></span><a  href="question_contentView?bid=${queDto.bid }&page=${map.page}&search=${map.search}" id="screct_link" class="view_article" style="cursor:pointer;">[ ${queDto.bcategory } ] ${queDto.btitle }&nbsp;
+			<%--     <c:choose>
+			    	<c:when test="${queDto.bstep > 0 }">
+			    		<span style="color:#c60e0e;">&nbsp;( ${queDto.bstep } )</span></a>  
+			    	</c:when>
+			    </c:choose> --%> 
                 </td>        
                 <td style="font-size:14px;">${queDto.bname }</td>
                 <td style="font-size:14px;">${queDto.bdate }</td>

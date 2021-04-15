@@ -2,6 +2,7 @@ package com.site.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,57 +87,34 @@ public class InfoServiceImpl implements InfoService {
 	}
 
 	@Override
-	public Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto, MultipartHttpServletRequest mtfRequest) {
+	public Map<String, Object> StudioWrite(StudiocompanyInfoDto stuDto,@RequestPart MultipartFile file) {
 
-		String safeFile = "";
-		String nFileName = "";
-		// 원본파일이름
-		List<MultipartFile> fileList = mtfRequest.getFiles("file");
-
-		// String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
-		// fileNameExtension;
-		// String fileNameExtension =
-		// FilenameUtils.getExtension(fileList[0].getOriginalFilename());
-		// String fileName = mtfRequest.getOriginalFilename();
-		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/";
-
-		// if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
-		for (MultipartFile mf : fileList) {
-			String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-			long fileSize = mf.getSize(); // 파일 사이즈
-			safeFile = fileUrl + System.currentTimeMillis() + originFileName;
-
+		String orgfileName = file.getOriginalFilename();
+		System.out.println("impl : " + orgfileName);
+		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
+			// 파일 저장 위치
+			String fileUrl = "C:/Users/User/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+																										// 파일이
+																										// 저장됨
+			// 신규파일이름 ( 32자리이름생성.확장자명 )
+			// 이름에 시간추가
+			long time = System.currentTimeMillis();
+			String uploadFileName = String.format("%d_%s", time, orgfileName);
+			File f = new File(fileUrl + uploadFileName);
 			try {
-				mf.transferTo(new File(safeFile));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
+				file.transferTo(f);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println(mf);
+			// 파일이름저장
+			stuDto.setC_fileName(uploadFileName);
+		} else {
+			stuDto.setC_fileName("");
 		}
-		nFileName = "/upload/" + safeFile.substring(fileUrl.length());
-		stuDto.setC_fileName(nFileName);
 
 		System.out.println("파일 : " + stuDto.getC_fileName());
 
-		// 확장자명 가져오기
-		// String fileNameExtension =
-		// FilenameUtils.getExtension(fileName).toLowerCase();
-		// if (FilenameUtils.getExtension(fileName).toLowerCase() != "") { // 파일 저장 위치
-		// 끝에 /붙여주기 그래야 밑에 // 파일이 저장됨 // 신규파일이름 ( 32자리이름생성.확장자명 )
-		// String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
-		// fileNameExtension;
-		// File f = new File(fileUrl + uploadFileName);
-		// try {
-		// file.transferTo(f);
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// } // 파일이름저장
-		// stuDto.setC_fileName(uploadFileName);
-		// } else {
-		// stuDto.setC_fileName("");
-		// }
+		
 		// mapper전달
 		infoMapper.insertStudioWrite(stuDto);
 
@@ -165,7 +143,7 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/User/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																										// 파일이
 																										// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
@@ -269,7 +247,7 @@ public class InfoServiceImpl implements InfoService {
 		String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
 		if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/User/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/User/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																										// 파일이 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -311,12 +289,13 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> DressModify(DresscompanyInfoDto dreDto, MultipartFile file) {
 
 		System.out.println("modify impl");
+		System.out.println("modify impl infoId : "+dreDto.getInfoId());
 		// 원본파일이름
 		String orgfileName = file.getOriginalFilename();
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
@@ -413,7 +392,7 @@ public class InfoServiceImpl implements InfoService {
 		String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
 		if (FilenameUtils.getExtension(fileName).toLowerCase() != "") {
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
 			String uploadFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
@@ -457,7 +436,7 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println("impl : " + orgfileName);
 		if (file.getSize() != 0) { // 파일사이즈가 0이 아니면
 			// 파일 저장 위치
-			String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+			String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 																									// 파일이
 																									// 저장됨
 			// 신규파일이름 ( 32자리이름생성.확장자명 )
@@ -535,7 +514,7 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public Map<String, Object> TravelWrite(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2) {
 
-		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 
 		// 원본파일이름
 		String fileName1 = file1.getOriginalFilename();
@@ -601,7 +580,7 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> TravelModify(TravelcompanyInfoDto traDto, MultipartFile file1, MultipartFile file2) {
 
 		// 파일 저장 위치
-		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
 		// 원본파일이름
 		String orgfileName1 = file1.getOriginalFilename();
@@ -710,7 +689,7 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> QuestionWrite(questionBoardDto queDto, MultipartFile file) {
 
 		// 파일 저장 위치
-		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
 		// 원본파일이름
 		String orgfileName = file.getOriginalFilename();
@@ -729,6 +708,8 @@ public class InfoServiceImpl implements InfoService {
 		} else {
 			queDto.setFileName("");
 		}
+		
+		
 
 		int writeCheck = infoMapper.insertQuestionWrite(queDto);
 
@@ -756,7 +737,7 @@ public class InfoServiceImpl implements InfoService {
 	public Map<String, Object> QuestionModify(questionBoardDto queDto, MultipartFile file) {
 
 		// 파일 저장 위치
-		String fileUrl = "C:/Users/하은/git/Project2/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
+		String fileUrl = "C:/Users/user/git/Project3/Project/src/main/resources/static/upload/"; // 끝에 /붙여주기 그래야 밑에
 		long time = System.currentTimeMillis(); // (이름에 시간추가) 하기 위해 선언
 		// 원본파일이름
 		String orgfileName = file.getOriginalFilename();

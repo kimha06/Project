@@ -359,19 +359,17 @@ $(document).ready(function() {
       <input type="hidden" name="bgroup" value="${map.queDto.bgroup }">
       <input type="hidden" name="bstep" value="${map.queDto.bstep }">
       <input type="hidden" name="bindent" value="${map.queDto.bindent }">
-      <input type="hidden" name="bcategory" value="${map.bcategory }">
       <input type="hidden" name="page" value="${map.page }">
       <input type="hidden" name="search" value="${map.search }">
 	   <input type="hidden" name="userid" id="userid" value="${userMap.memberDto.userid }">
 	   <input type="hidden" name="bid" id="bid" value="${map.queDto.bid}">
-	   <input type="hidden" name="bname" id="bname" value="${userMap.memberDto.name }">
    
    <div class="online_Awrite_form">
       <ul>
             <li class="box_li">
             <span class="online_write_title"><img src="../images/member_icon.png">&nbsp;&nbsp;&nbsp;작성자</span>
                 <div class="value">
-                <input type="input" name="bname" id="bname" class="online_write_input02" value="${userMap.memberDto.name }" readonly style="padding-left:5px;color:#000000;">
+                <input type="text" name="bname" id="bname" class="online_write_input02" value="${userMap.memberDto.name }" readonly style="padding-left:5px;color:#000000;">
                 </div>
             </li>
             <li class="box_li" >

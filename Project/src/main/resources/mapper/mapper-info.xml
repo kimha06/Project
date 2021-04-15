@@ -50,7 +50,7 @@
 	  <insert id="insertStudioWrite">
 	  	<![CDATA[ 
 		  	insert into StudioCompanyInfo values(
-			stu_sequence.nextval,'aaa',#{com_name},#{content},#{c_productName},
+			stu_sequence.nextval,#{userid},#{com_name},#{content},#{c_productName},
 			#{c_productPrice},#{c_onlineAddress},#{c_fileName},'111-1111',#{c_officeHours},#{c_offDays},#{c_address})
 	    ]]>
 	  </insert>
@@ -347,7 +347,7 @@
 		  	<![CDATA[ 
 			  	insert into question_board values(
 				qboard_sequence.nextval,#{bname},#{bcategory},#{btitle},#{bcontent},
-				sysdate,0,#{bgroup},#{bstep}+1,#{bindent},'')
+				sysdate,0,#{bgroup},#{bstep}+1,#{bindent}+1,'')
 	    	]]>
 		  </insert>
 	  

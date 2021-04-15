@@ -208,18 +208,22 @@ public class InfoController {
 	//글쓰기
 	@RequestMapping("/info/studio_write")
 	@ResponseBody
-	public String studio_write(StudiocompanyInfoDto stuDto, MultipartHttpServletRequest mtfRequest) {
-		map = infoService.StudioWrite(stuDto,mtfRequest);
+	public String studio_write(StudiocompanyInfoDto stuDto,@RequestParam String userid,@RequestPart MultipartFile file) {
+		System.out.println("파일이름 : "+stuDto.getC_fileName());
+		System.out.println("userid : "+userid);
+		stuDto.setUserid(userid);
+		
+		map = infoService.StudioWrite(stuDto,file);
 		
 		return "redirect:/info/studio_list";
 	}
 	
 	@RequestMapping("/info/dress_write")
-	public String dress_write(DresscompanyInfoDto dreDto, @RequestPart MultipartFile file, Model model) {
+	public String dress_write(DresscompanyInfoDto dreDto, @RequestParam String userid,@RequestPart MultipartFile file, Model model) {
 		
 		System.out.println("dreDto userid : "+dreDto.getUserid());
 		System.out.println("dreDto 전화번호 : "+dreDto.getCom_tel());
-		
+		dreDto.setUserid(userid);
 		map = infoService.DressWrite(dreDto,file);
 		
 		model.addAttribute("map", map);
@@ -228,11 +232,11 @@ public class InfoController {
 	}
 	
 	@RequestMapping("/info/hairMakeUp_write")
-	public String hairMakeUp_write(HMcompanyInfoDto hmDto, @RequestPart MultipartFile file, Model model) {
+	public String hairMakeUp_write(HMcompanyInfoDto hmDto,@RequestParam String userid, @RequestPart MultipartFile file, Model model) {
 		
 		System.out.println("hmDto userid : "+hmDto.getUserid());
 		System.out.println("hmDto 전화번호 : "+hmDto.getCom_tel());
-		
+		hmDto.setUserid(userid);
 		map = infoService.HmWrite(hmDto,file);
 		
 		model.addAttribute("map", map);
@@ -241,8 +245,8 @@ public class InfoController {
 	}
 	
 	@RequestMapping("/info/travel_write")
-	public String travel_write(TravelcompanyInfoDto traDto, @RequestPart MultipartFile file1, @RequestPart MultipartFile file2, Model model) {
-		
+	public String travel_write(TravelcompanyInfoDto traDto,@RequestParam String userid, @RequestPart MultipartFile file1, @RequestPart MultipartFile file2, Model model) {
+		traDto.setUserid(userid);
 		map = infoService.TravelWrite(traDto,file1,file2);
 
 		model.addAttribute("map", map);
@@ -252,7 +256,6 @@ public class InfoController {
 	
 	@RequestMapping("/info/question_write")
 	public String question_write(questionBoardDto queDto, @RequestPart MultipartFile file, Model model) {
-		
 		map = infoService.QuestionWrite(queDto,file);
 
 		model.addAttribute("map", map);
